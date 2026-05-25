@@ -3,120 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RJR Lawn & Landscaping | St. Charles, MO</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<title>RJR Lawn & Landscaping | Father-Son Lawn Care · St. Charles, MO</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--green:#2D5A1B;--green2:#4A8C2A;--yellow:#F5C518;--cream:#FAFAF5;--dark:#1A2810;--gray:#5C6E52;--border:rgba(45,90,27,0.15)}
-body{cursor:none;background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-serif;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;background:var(--dark);border-bottom:3px solid var(--green2)}
-.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:2px}
+:root{--green:#2D5A1B;--green2:#4A8C2A;--green3:#7BBE52;--yellow:#F5C518;--yellow2:#FFD740;--cream:#FAFAF5;--dark:#1A2810;--gray:#5C6E52;--sky:#7FB3D5;--border:rgba(45,90,27,0.15)}
+body{background:var(--cream);color:var(--dark);font-family:'Montserrat',sans-serif;overflow-x:hidden}
+.scroll-bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--yellow);z-index:200;transition:width .12s linear}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(26,40,16,.85);backdrop-filter:blur(10px);border-bottom:2px solid rgba(245,197,24,.4);transition:all .3s}
+.logo{font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:2px;white-space:nowrap}
 .logo em{color:var(--yellow);font-style:normal}
 .nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.nav-links a{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;font-weight:600}
 .nav-links a:hover{color:var(--yellow)}
-.nav-cta{background:var(--yellow);color:var(--dark);font-size:.75rem;letter-spacing:2px;text-transform:uppercase;padding:10px 22px;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;transition:all .2s;text-decoration:none}
-.nav-cta:hover{background:#ffd740}
-.hero{background:var(--dark);min-height:100vh;display:flex;align-items:center;padding:6rem 3rem 5rem;position:relative;overflow:hidden}
-.hero::after{content:'RJR';position:absolute;right:-1rem;bottom:-3rem;font-weight:900;font-size:16rem;color:rgba(245,197,24,0.04);pointer-events:none;line-height:1}
-.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1}
-.hero-badge{display:inline-block;background:rgba(245,197,24,0.1);border:1px solid rgba(245,197,24,0.3);color:var(--yellow);font-size:.68rem;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;margin-bottom:2rem}
-h1{font-weight:900;font-size:clamp(2.5rem,5vw,5.5rem);line-height:1;color:#fff;margin-bottom:1.5rem;letter-spacing:-1px}
-h1 span{color:var(--yellow);display:block}
-.hero-sub{font-size:.93rem;color:rgba(255,255,255,.5);line-height:1.9;font-weight:400;max-width:420px;margin-bottom:3rem}
-.hero-btns{display:flex;gap:1rem}
-.btn-y{background:var(--yellow);color:var(--dark);font-size:.78rem;letter-spacing:2px;text-transform:uppercase;padding:14px 30px;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;transition:all .2s;text-decoration:none;display:inline-block}
-.btn-y:hover{background:#ffd740}
-.btn-ow{background:transparent;color:#fff;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;padding:13px 30px;border:1px solid rgba(255,255,255,.2);cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;text-decoration:none;display:inline-block}
-.btn-ow:hover{border-color:var(--yellow);color:var(--yellow)}
-.family-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:3rem;text-align:center;position:relative}
-.family-icon{font-size:4rem;margin-bottom:1.5rem}
-.family-title{font-weight:900;font-size:1.5rem;color:#fff;margin-bottom:.8rem;letter-spacing:1px}
-.family-desc{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.9;font-weight:400}
-.family-divider{height:1px;background:rgba(255,255,255,.08);margin:2rem 0}
-.family-stat{display:flex;justify-content:space-around}
-.fs-item{text-align:center}
-.fs-num{font-weight:900;font-size:2rem;color:var(--yellow)}
-.fs-label{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.2rem}
-.strip{background:var(--green2);padding:.75rem 0;overflow:hidden}
-.st{display:flex;animation:scroll 16s linear infinite;white-space:nowrap}
-.si{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:#fff;padding:0 2.5rem;font-weight:600}
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.section{padding:6rem 3rem;max-width:1200px;margin:0 auto}
-.eyebrow{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--green2);font-weight:700;margin-bottom:.8rem}
-.title{font-weight:900;font-size:clamp(2rem,4.5vw,4.5rem);line-height:1;margin-bottom:1.5rem;letter-spacing:-1px}
-.title span{color:var(--green)}
-.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
-.svc{background:#fff;border:1px solid var(--border);padding:2.5rem;transition:all .3s}
-.svc:hover{border-color:var(--green2);box-shadow:0 8px 24px rgba(45,90,27,.1)}
-.svc-icon{font-size:2.5rem;margin-bottom:1.2rem}
-.svc-name{font-weight:700;font-size:1rem;letter-spacing:.5px;margin-bottom:.6rem;color:var(--dark)}
-.svc-desc{font-size:.82rem;color:var(--gray);line-height:1.7}
-.value-section{background:var(--green);padding:6rem 3rem}
-.val-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
-.val-list{display:flex;flex-direction:column;gap:1.5rem;margin-top:3rem}
-.val-item{display:flex;gap:1.2rem;padding:1.5rem;background:rgba(255,255,255,.06);border-left:4px solid var(--yellow)}
-.val-icon{font-size:1.5rem;flex-shrink:0}
-.val-t{font-weight:700;color:#fff;font-size:.95rem;margin-bottom:.3rem}
-.val-d{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6}
-.val-visual{text-align:center}
-.v-big{font-weight:900;font-size:7rem;color:var(--yellow);line-height:1;letter-spacing:-3px}
-.v-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.5rem}
-.revs{background:#EEF4EA;padding:6rem 3rem}
-.rev-inner{max-width:1200px;margin:0 auto}
-.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
-.rev{background:#fff;padding:2.5rem;border:1px solid var(--border)}
-.rev-stars{color:var(--green2);letter-spacing:2px;margin-bottom:1rem;font-size:.85rem}
-.rev-text{font-size:.86rem;color:var(--gray);line-height:1.9;font-style:italic;margin-bottom:1.5rem}
-.rev-author{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--green2);font-weight:700}
-.cta{background:var(--yellow);padding:7rem 3rem;text-align:center}
-.cta h2{font-weight:900;font-size:clamp(3rem,8vw,8rem);color:var(--dark);line-height:.95;letter-spacing:-3px;margin-bottom:1.5rem}
-.cta p{color:rgba(26,40,16,.6);font-size:.95rem;max-width:400px;margin:0 auto 3rem;line-height:1.9}
-.cta-ph{font-weight:900;font-size:2.5rem;color:var(--dark);display:block;margin-bottom:2rem;text-decoration:none;letter-spacing:-1px}
+.nav-cta{background:var(--yellow);color:var(--dark);font-size:.75rem;letter-spacing:2px;text-transform:uppercase;padding:11px 22px;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;transition:all .2s;text-decoration:none}
+.nav-cta:hover{background:var(--yellow2);transform:translateY(-1px)}
+
+/* ============ SCROLLYTELLING HERO ============ */
+/* Pinned canvas. 600vh tall section. 6 beats. */
+.story{position:relative;height:600vh;background:var(--dark)}
+.story-pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#storyCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+/* Overlay text "beats" — only one visible at a time */
+.beat{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:6rem 3rem 4rem;z-index:3;pointer-events:none;opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.beat.in{opacity:1;transform:translateY(0);pointer-events:auto}
+.beat-inner{max-width:1100px;width:100%;margin:0 auto}
+.beat-tag{display:inline-block;background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.4);color:var(--yellow);font-size:.7rem;letter-spacing:4px;text-transform:uppercase;padding:7px 16px;margin-bottom:2rem;font-weight:700;backdrop-filter:blur(4px)}
+.beat-h1{font-weight:900;font-size:clamp(3.5rem,9vw,9rem);line-height:.95;color:#fff;letter-spacing:-2px;margin-bottom:1.5rem;text-shadow:0 4px 24px rgba(0,0,0,.4)}
+.beat-h1 em{color:var(--yellow);font-style:normal;display:block}
+.beat-sub{font-size:1.1rem;color:rgba(255,255,255,.85);line-height:1.8;max-width:560px;margin-bottom:2.5rem;font-weight:400;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.beat-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.beat-stat{display:flex;gap:3rem;margin-top:2rem;flex-wrap:wrap}
+.beat-stat-item{display:flex;flex-direction:column;color:#fff}
+.bs-num{font-weight:900;font-size:2.5rem;color:var(--yellow);line-height:1;text-shadow:0 4px 16px rgba(0,0,0,.4)}
+.bs-label{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;margin-top:.4rem}
+
+/* Beat-specific anchors (text aligns differently per beat for visual rhythm) */
+.beat-1 .beat-inner{text-align:left}
+.beat-2 .beat-inner{text-align:right;margin-left:auto}
+.beat-3 .beat-inner{text-align:left}
+.beat-4{justify-content:flex-start;padding-top:8rem}
+.beat-4 .beat-inner{text-align:center}
+.beat-5 .beat-inner{text-align:right;margin-left:auto}
+.beat-6 .beat-inner{text-align:center;padding-bottom:6rem}
+.beat-6 .beat-h1{font-size:clamp(2.5rem,5vw,4.5rem)}
+
+/* Scrubber dots showing which beat */
+.beat-rail{position:absolute;right:2rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1.4rem;z-index:5;align-items:flex-end}
+.brail-dot{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,.5);font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;cursor:pointer;transition:color .3s}
+.brail-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .3s}
+.brail-dot.active{color:var(--yellow)}
+.brail-dot.active::after{background:var(--yellow);transform:scale(1.5);box-shadow:0 0 16px rgba(245,197,24,.6)}
+
+/* Buttons */
+.btn-y{background:var(--yellow);color:var(--dark);font-size:.78rem;letter-spacing:2px;text-transform:uppercase;padding:15px 32px;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-y:hover{background:var(--yellow2);transform:translateY(-2px)}
+.btn-ow{background:rgba(255,255,255,.08);backdrop-filter:blur(4px);color:#fff;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;padding:14px 32px;border:1.5px solid rgba(255,255,255,.4);cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:600;transition:all .2s;text-decoration:none;display:inline-block}
+.btn-ow:hover{background:#fff;color:var(--dark);border-color:#fff}
 .btn-d{background:var(--dark);color:var(--yellow);font-size:.82rem;letter-spacing:2px;text-transform:uppercase;padding:16px 48px;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;transition:all .2s;display:inline-block;text-decoration:none}
-.btn-d:hover{background:#2a3d1a}
-footer{background:var(--dark);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.fl{font-weight:900;color:var(--yellow);font-size:1rem;letter-spacing:2px}
-.fc{font-size:.68rem;letter-spacing:1px;color:rgba(255,255,255,.3)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.fi{opacity:0;animation:fadeUp .7s ease forwards}
-.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.family-card{display:none}.nav-links{display:none}.section,.value-section,.revs,.cta{padding:4rem 1.5rem}.svcs,.val-inner,.rev-grid{grid-template-columns:1fr}}
-.cur{color:var(--yellow);position:fixed;width:8px;height:8px;background:currentColor;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s}.cur-ring{position:fixed;width:32px;height:32px;border:1.5px solid currentColor;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;opacity:.5}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:10000;align-items:center;justify-content:center}.modal-overlay.active{display:flex}.modal-box{background:#fff;max-width:400px;width:90%;padding:2.5rem;text-align:center;position:relative;animation:popIn .25s ease}.modal-box h3{font-size:1.2rem;color:#1a1a1a;margin-bottom:.5rem;font-weight:700}.modal-box p{font-size:.85rem;color:#666;line-height:1.6;margin-bottom:1.5rem}.modal-phone{font-size:1.8rem;font-weight:900;color:#2D5A1B;display:block;margin-bottom:1rem;text-decoration:none}.modal-addr{font-size:.82rem;color:#888;margin-bottom:1.5rem}.modal-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}.modal-btn-call{background:#2D5A1B;color:#fff;padding:12px 28px;border:none;cursor:pointer;font-weight:700;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;text-decoration:none;display:inline-block}.modal-btn-map{background:transparent;color:#2D5A1B;padding:11px 28px;border:1.5px solid #2D5A1B;cursor:pointer;font-weight:700;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;text-decoration:none;display:inline-block}.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#999;line-height:1}@keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.btn-d:hover{background:#0d1407}
+.btn-g{background:var(--green);color:#fff;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;padding:15px 32px;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;transition:background .2s;text-decoration:none;display:inline-block}
+.btn-g:hover{background:var(--green2)}
+.magnetic{transition:transform .3s cubic-bezier(.2,.7,.3,1)}
+.magnetic-inner{display:inline-block;transition:transform .3s cubic-bezier(.2,.7,.3,1);pointer-events:none}
+
+/* ============ MARQUEE ============ */
+.strip{background:var(--green);padding:.85rem 0;overflow:hidden;position:relative;z-index:4}
+.st{display:flex;animation:scroll 18s linear infinite;white-space:nowrap}
+.si{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);padding:0 2.5rem;font-weight:700;display:flex;align-items:center;gap:2.5rem}
+.si::after{content:'★';color:#fff;font-size:.7rem;opacity:.7}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ============ SECTIONS BELOW HERO ============ */
+.section{padding:7rem 3rem;max-width:1300px;margin:0 auto}
+.eyebrow{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--green2);font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--green2)}
+.title{font-weight:900;font-size:clamp(2.5rem,5vw,4.8rem);line-height:1;margin-bottom:1.5rem;letter-spacing:-1.5px}
+.title span{color:var(--green)}
+
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.svc{background:#fff;border:1px solid var(--border);padding:2.5rem;transition:all .3s;position:relative;overflow:hidden}
+.svc:hover{border-color:var(--green2);transform:translateY(-4px);box-shadow:0 16px 36px rgba(45,90,27,.12)}
+.svc-num{position:absolute;top:1.5rem;right:1.8rem;font-weight:900;font-size:2.5rem;color:rgba(245,197,24,.15);line-height:1}
+.svc-icon{width:48px;height:48px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;color:var(--yellow);transition:background .3s}
+.svc:hover .svc-icon{background:var(--green2)}
+.svc-icon svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}
+.svc-name{font-weight:800;font-size:1.15rem;letter-spacing:.5px;margin-bottom:.6rem;color:var(--dark)}
+.svc-desc{font-size:.85rem;color:var(--gray);line-height:1.75;font-weight:400}
+
+/* VALUES */
+.value-section{background:var(--green);padding:7rem 3rem;color:#fff;position:relative;overflow:hidden}
+.value-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top right,rgba(245,197,24,.1),transparent 60%);pointer-events:none}
+.val-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:6rem;align-items:center;position:relative;z-index:1}
+.value-section .eyebrow{color:var(--yellow)}
+.value-section .eyebrow::before{background:var(--yellow)}
+.value-section .title{color:#fff}
+.value-section .title span{color:var(--yellow)}
+.val-list{display:flex;flex-direction:column;gap:1.2rem;margin-top:3rem}
+.val-item{display:flex;gap:1.2rem;padding:1.5rem 1.8rem;background:rgba(255,255,255,.06);border-left:3px solid var(--yellow);transition:background .3s,transform .3s}
+.val-item:hover{background:rgba(255,255,255,.1);transform:translateX(6px)}
+.val-icon{width:36px;height:36px;background:var(--yellow);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--dark)}
+.val-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.val-t{font-weight:800;color:#fff;font-size:1rem;margin-bottom:.3rem;letter-spacing:.5px}
+.val-d{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.65;font-weight:400}
+.val-visual{text-align:center}
+.v-big{font-weight:900;font-size:clamp(6rem,12vw,12rem);color:var(--yellow);line-height:.85;letter-spacing:-5px}
+.v-label{font-size:.78rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.8rem;font-weight:700}
+
+/* REVIEWS */
+.revs{background:#EEF4EA;padding:7rem 3rem}
+.rev-inner{max-width:1300px;margin:0 auto}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.rev{background:#fff;padding:2.5rem;border:1px solid var(--border);transition:transform .3s,box-shadow .3s}
+.rev:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(45,90,27,.1)}
+.rev-stars{color:var(--green2);letter-spacing:2px;margin-bottom:1rem;font-size:.9rem}
+.rev-text{font-size:.88rem;color:var(--gray);line-height:1.85;font-style:italic;margin-bottom:1.5rem}
+.rev-author{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--green2);font-weight:700}
+
+/* BOOKING FORM */
+.booking-section{background:var(--cream);padding:7rem 3rem;border-top:1px solid var(--border)}
+.booking-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}
+.booking-side p{font-size:.95rem;color:var(--gray);line-height:1.85;font-weight:400;margin-bottom:2rem;max-width:380px}
+.booking-side a{color:var(--green);text-decoration:none;font-weight:700}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;margin-bottom:1.1rem}
+.form-group label{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:.5rem}
+.form-group input,.form-group select,.form-group textarea{background:#fff;border:1px solid var(--border);color:var(--dark);font-family:'Montserrat',sans-serif;font-size:.93rem;padding:.9rem 1rem;outline:none;transition:border-color .2s;-webkit-appearance:none;border-radius:4px}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green2)}
+.booking-success{padding:2rem 0}
+
+/* CTA */
+.cta{background:var(--yellow);padding:8rem 3rem;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'☘';position:absolute;font-size:35rem;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(45,90,27,.08);pointer-events:none;line-height:.8}
+.cta>*{position:relative;z-index:1}
+.cta h2{font-weight:900;font-size:clamp(3rem,8vw,8rem);color:var(--dark);line-height:.95;letter-spacing:-3px;margin-bottom:1.5rem}
+.cta p{color:rgba(26,40,16,.7);font-size:1rem;max-width:440px;margin:0 auto 3rem;line-height:1.9;font-weight:500}
+.cta-ph{font-weight:900;font-size:2.8rem;color:var(--dark);display:block;margin-bottom:2rem;text-decoration:none;letter-spacing:-1px}
+
+footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.fl{font-weight:900;color:var(--yellow);font-size:1.05rem;letter-spacing:2px}
+.fc{font-size:.72rem;letter-spacing:1px;color:rgba(255,255,255,.4)}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.78);z-index:10000;align-items:center;justify-content:center}
+.modal-overlay.active{display:flex}
+.modal-box{background:#fff;max-width:420px;width:90%;padding:2.5rem;text-align:center;position:relative;animation:popIn .25s ease}
+.modal-box h3{font-size:1.3rem;color:var(--dark);margin-bottom:.5rem;font-weight:900;letter-spacing:1px}
+.modal-box p{font-size:.85rem;color:#666;line-height:1.6;margin-bottom:1.5rem}
+.modal-phone{font-size:2rem;font-weight:900;color:var(--green);display:block;margin-bottom:1rem;text-decoration:none;letter-spacing:-1px}
+.modal-addr{font-size:.82rem;color:#888;margin-bottom:1.5rem}
+.modal-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.modal-btn-call{background:var(--green);color:#fff;padding:12px 28px;border:none;cursor:pointer;font-weight:700;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;text-decoration:none;display:inline-block}
+.modal-btn-map{background:transparent;color:var(--green);padding:11px 28px;border:1.5px solid var(--green);cursor:pointer;font-weight:700;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;text-decoration:none;display:inline-block}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#999;line-height:1}
+@keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1.5rem;height:60px}
+  .nav-links{display:none}
+  .story{height:auto}
+  .story-pin{position:relative;height:auto;display:block;padding:5rem 0}
+  #storyCanvas{position:relative;width:100%;height:60vh;display:block}
+  .beat{position:relative;opacity:1;transform:none;padding:3rem 1.5rem;pointer-events:auto;justify-content:flex-start}
+  .beat-inner{text-align:left!important;margin-left:0!important}
+  .beat-rail{display:none}
+  .section,.value-section,.revs,.cta,.booking-section{padding:5rem 1.5rem}
+  .svcs,.rev-grid,.val-inner,.booking-inner{grid-template-columns:1fr;gap:3rem}
+  .form-row{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+<div class="scroll-bar" id="scrollBar"></div>
+
 <nav>
   <div class="logo">RJR <em>LAWN</em></div>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
+    <li><a href="#values">Values</a></li>
     <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#booking">Quote</a></li>
   </ul>
-  <a href="tel:3148092756" class="nav-cta" onclick="if(window.innerWidth>768){event.preventDefault();openBookModal()}">Free Quote</a>
+  <a href="tel:3148092756" class="nav-cta magnetic" onclick="if(window.innerWidth>768){event.preventDefault();openBookModal()}">Free Quote</a>
 </nav>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge fi d1">Father &amp; Son · St. Charles, MO</div>
-      <h1 class="fi d2">We Love<span>Your Lawn.</span></h1>
-      <p class="hero-sub fi d3">RJR Lawn & Landscaping is a family operation built on customer service and quality work. Rick and his son serve St. Charles County with pride on every job.</p>
-      <div class="hero-btns fi d3">
-        <a href="tel:3148092756" class="btn-y" onclick="if(window.innerWidth>768){event.preventDefault();openBookModal()}">Get Free Quote</a>
-        <a href="#services" class="btn-ow">Our Services</a>
+<!-- ============================================================ -->
+<!-- THE SCROLLYTELLING HERO — one canvas, 6 beats                -->
+<!-- Camera, mower, grass-cut, sun all driven by scroll progress   -->
+<!-- ============================================================ -->
+<section class="story">
+  <div class="story-pin">
+    <canvas id="storyCanvas"></canvas>
+
+    <div class="beat-rail" id="beatRail">
+      <div class="brail-dot active" data-beat="0">The Lawn</div>
+      <div class="brail-dot" data-beat="1">Meet Rick</div>
+      <div class="brail-dot" data-beat="2">The Cut</div>
+      <div class="brail-dot" data-beat="3">Services</div>
+      <div class="brail-dot" data-beat="4">Finished</div>
+      <div class="brail-dot" data-beat="5">Call Us</div>
+    </div>
+
+    <div class="beat beat-1 in">
+      <div class="beat-inner">
+        <div class="beat-tag">Father &amp; Son · St. Charles, MO</div>
+        <h1 class="beat-h1">We Love<em>Your Lawn.</em></h1>
+        <p class="beat-sub">RJR Lawn &amp; Landscaping is a family operation built on customer service and quality work. Rick and his son serve St. Charles County with pride on every single job.</p>
+        <div class="beat-btns">
+          <a href="tel:3148092756" class="btn-y magnetic" onclick="if(window.innerWidth>768){event.preventDefault();openBookModal()}"><span class="magnetic-inner">Get Free Quote</span></a>
+          <a href="#services" class="btn-ow magnetic"><span class="magnetic-inner">Our Services</span></a>
+        </div>
       </div>
     </div>
-    <div class="family-card fi d2">
-      <div class="family-icon">👨‍👦</div>
-      <div class="family-title">Father & Son Team</div>
-      <div class="family-desc">A family operation that treats your property like their own. Customer service is what we take pride in above everything else.</div>
-      <div class="family-divider"></div>
-      <div class="family-stat">
-        <div class="fs-item"><div class="fs-num">4.9★</div><div class="fs-label">Rating</div></div>
-        <div class="fs-item"><div class="fs-num">Local</div><div class="fs-label">St. Charles</div></div>
-        <div class="fs-item"><div class="fs-num">Free</div><div class="fs-label">Estimates</div></div>
+
+    <div class="beat beat-2">
+      <div class="beat-inner">
+        <div class="beat-tag">A Family Operation</div>
+        <h1 class="beat-h1">Meet<em>Rick.</em></h1>
+        <p class="beat-sub" style="margin-left:auto">A father-son team who's been on every yard themselves. You won't get passed off to a crew you've never met — Rick remembers you, your yard, and your preferences.</p>
+        <div class="beat-stat" style="justify-content:flex-end">
+          <div class="beat-stat-item"><div class="bs-num">4.9★</div><div class="bs-label">Google Rating</div></div>
+          <div class="beat-stat-item"><div class="bs-num">100%</div><div class="bs-label">Family-Run</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat beat-3">
+      <div class="beat-inner">
+        <div class="beat-tag">The Work</div>
+        <h1 class="beat-h1">Cut. Trimmed.<em>Done Right.</em></h1>
+        <p class="beat-sub">Weekly or bi-weekly mowing with trimming, edging, and cleanup. Same crew every visit. The lines stay sharp, the corners stay neat.</p>
+      </div>
+    </div>
+
+    <div class="beat beat-4">
+      <div class="beat-inner">
+        <div class="beat-tag">Everything We Offer</div>
+        <h1 class="beat-h1">Six Ways to<em>Grow.</em></h1>
+        <p class="beat-sub" style="margin:0 auto 2.5rem">Mowing, landscape design, stone work, leaf cleanup, mulching, and shrub care — all under one local team.</p>
+        <div class="beat-btns" style="justify-content:center">
+          <a href="#services" class="btn-y magnetic"><span class="magnetic-inner">See All Services</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat beat-5">
+      <div class="beat-inner">
+        <div class="beat-tag">The Result</div>
+        <h1 class="beat-h1">100%<em>Satisfaction.</em></h1>
+        <p class="beat-sub" style="margin-left:auto">Reliable scheduling. If we say we'll be there, we'll be there. Quality work at reasonable prices — we don't charge an arm and a leg.</p>
+        <div class="beat-stat" style="justify-content:flex-end">
+          <div class="beat-stat-item"><div class="bs-num">Free</div><div class="bs-label">Estimates</div></div>
+          <div class="beat-stat-item"><div class="bs-num">Local</div><div class="bs-label">St. Charles</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat beat-6">
+      <div class="beat-inner">
+        <div class="beat-tag">Ready to Start?</div>
+        <h1 class="beat-h1">Call Rick.</h1>
+        <a href="tel:3148092756" style="font-weight:900;font-size:clamp(2.5rem,5vw,4rem);color:var(--yellow);text-decoration:none;display:block;margin:1.5rem 0;letter-spacing:-1px;text-shadow:0 4px 24px rgba(0,0,0,.4)">(314) 809-2756</a>
+        <div class="beat-btns" style="justify-content:center">
+          <a href="tel:3148092756" class="btn-y magnetic" onclick="if(window.innerWidth>768){event.preventDefault();openBookModal()}"><span class="magnetic-inner">Get Free Quote</span></a>
+          <a href="#booking" class="btn-ow magnetic"><span class="magnetic-inner">Or Send a Note</span></a>
+        </div>
       </div>
     </div>
   </div>
@@ -124,33 +278,35 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;justify-content:spa
 
 <div class="strip">
   <div class="st">
-    <div class="si">Lawn Mowing ·</div><div class="si">Mulching ·</div><div class="si">Landscaping ·</div><div class="si">Leaf Cleanup ·</div><div class="si">Stone Work ·</div><div class="si">Free Estimates ·</div>
-    <div class="si">Lawn Mowing ·</div><div class="si">Mulching ·</div><div class="si">Landscaping ·</div><div class="si">Leaf Cleanup ·</div><div class="si">Stone Work ·</div><div class="si">Free Estimates ·</div>
+    <div class="si">Lawn Mowing</div><div class="si">Mulching</div><div class="si">Landscaping</div><div class="si">Leaf Cleanup</div><div class="si">Stone Work</div><div class="si">Free Estimates</div>
+    <div class="si">Lawn Mowing</div><div class="si">Mulching</div><div class="si">Landscaping</div><div class="si">Leaf Cleanup</div><div class="si">Stone Work</div><div class="si">Free Estimates</div>
   </div>
 </div>
 
+<!-- SERVICES -->
 <div class="section" id="services">
   <div class="eyebrow">Services</div>
-  <h2 class="title">What We <span>Do</span></h2>
+  <h2 class="title" data-split>What We <span>Do.</span></h2>
   <div class="svcs">
-    <div class="svc"><div class="svc-icon">🌿</div><div class="svc-name">Lawn Mowing</div><div class="svc-desc">Weekly or bi-weekly mowing with trimming, edging, and cleanup. Consistent quality every visit.</div></div>
-    <div class="svc"><div class="svc-icon">🪨</div><div class="svc-name">Landscaping & Stone</div><div class="svc-desc">Garden redesigns, stone installation, shrub work, and full landscape projects done beautifully.</div></div>
-    <div class="svc"><div class="svc-icon">🍂</div><div class="svc-name">Leaf Cleanup</div><div class="svc-desc">Fall cleanup services — we clear leaves, bag debris, and leave your yard looking great heading into winter.</div></div>
-    <div class="svc"><div class="svc-icon">🪴</div><div class="svc-name">Mulching</div><div class="svc-desc">Fresh mulch in your beds gives your yard a clean, finished look. Bulk delivery and installation.</div></div>
-    <div class="svc"><div class="svc-icon">🌳</div><div class="svc-name">Bush & Shrub Trimming</div><div class="svc-desc">Shape up overgrown shrubs and bushes. We remove them entirely if needed too.</div></div>
-    <div class="svc"><div class="svc-icon">🏡</div><div class="svc-name">Yard Cleanup</div><div class="svc-desc">One-time or seasonal cleanups. Great for getting your yard ready to sell or just looking its best.</div></div>
+    <div class="svc"><div class="svc-num">01</div><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M2 22h20M3 17l9-12 9 12M7 22V13"/></svg></div><div class="svc-name">Lawn Mowing</div><div class="svc-desc">Weekly or bi-weekly mowing with trimming, edging, and cleanup. Consistent quality every visit.</div></div>
+    <div class="svc"><div class="svc-num">02</div><div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="6" cy="15" r="4"/><circle cx="17" cy="10" r="3"/><circle cx="12" cy="18" r="2"/></svg></div><div class="svc-name">Landscaping &amp; Stone</div><div class="svc-desc">Garden redesigns, stone installation, shrub work, and full landscape projects done beautifully.</div></div>
+    <div class="svc"><div class="svc-num">03</div><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M5 10c0-3 3-6 7-6s7 3 7 6c0 4-7 11-7 11s-7-7-7-11z"/></svg></div><div class="svc-name">Leaf Cleanup</div><div class="svc-desc">Fall cleanup services — we clear leaves, bag debris, and leave your yard looking great heading into winter.</div></div>
+    <div class="svc"><div class="svc-num">04</div><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M2 12h20M2 18h20M2 6h20"/></svg></div><div class="svc-name">Mulching</div><div class="svc-desc">Fresh mulch in your beds gives your yard a clean, finished look. Bulk delivery and installation included.</div></div>
+    <div class="svc"><div class="svc-num">05</div><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 22V8M8 4a4 4 0 014-2 4 4 0 014 2"/><path d="M5 14c0-3 3-5 7-5s7 2 7 5"/></svg></div><div class="svc-name">Bush &amp; Shrub Trimming</div><div class="svc-desc">Shape up overgrown shrubs and bushes. We remove them entirely if needed too — no extra charge for haul-away.</div></div>
+    <div class="svc"><div class="svc-num">06</div><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="svc-name">Yard Cleanup</div><div class="svc-desc">One-time or seasonal cleanups. Great for getting your yard ready to sell or just looking its best.</div></div>
   </div>
 </div>
 
-<div class="value-section">
+<!-- VALUES -->
+<div class="value-section" id="values">
   <div class="val-inner">
     <div>
-      <div class="eyebrow" style="color:var(--yellow)">Why RJR</div>
-      <h2 class="title" style="color:#fff">Family <span style="color:var(--yellow)">Values</span></h2>
+      <div class="eyebrow">Why RJR</div>
+      <h2 class="title" data-split>Family <span>Values.</span></h2>
       <div class="val-list">
-        <div class="val-item"><div class="val-icon">🤝</div><div><div class="val-t">Personal Service</div><div class="val-d">You're not a number. Rick remembers you, your yard, and your preferences every visit.</div></div></div>
-        <div class="val-item"><div class="val-icon">💰</div><div><div class="val-t">Affordable Rates</div><div class="val-d">Quality work at reasonable prices. We don't charge an arm and a leg.</div></div></div>
-        <div class="val-item"><div class="val-icon">⏰</div><div><div class="val-t">Shows Up On Time</div><div class="val-d">Reliable scheduling. If we say we'll be there, we'll be there.</div></div></div>
+        <div class="val-item"><div class="val-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg></div><div><div class="val-t">Personal Service</div><div class="val-d">You're not a number. Rick remembers you, your yard, and your preferences every visit.</div></div></div>
+        <div class="val-item"><div class="val-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div><div class="val-t">Affordable Rates</div><div class="val-d">Quality work at reasonable prices. We don't charge an arm and a leg. Free estimates always.</div></div></div>
+        <div class="val-item"><div class="val-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="val-t">Shows Up On Time</div><div class="val-d">Reliable scheduling. If we say we'll be there, we'll be there — no excuses, no delays.</div></div></div>
       </div>
     </div>
     <div class="val-visual">
@@ -160,10 +316,11 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;justify-content:spa
   </div>
 </div>
 
+<!-- REVIEWS -->
 <div class="revs" id="reviews">
   <div class="rev-inner">
     <div class="eyebrow">Reviews</div>
-    <h2 class="title">What Clients <span>Say</span></h2>
+    <h2 class="title" data-split>What Clients <span>Say.</span></h2>
     <div class="rev-grid">
       <div class="rev"><div class="rev-stars">★★★★★</div><p class="rev-text">"Rick is dedicated to making his customers happy. Always on time and the end result looks like a new green carpet. Open to collecting fallen leaves too. Highly recommend."</p><div class="rev-author">— Google Review</div></div>
       <div class="rev"><div class="rev-stars">★★★★★</div><p class="rev-text">"Rick did an excellent job replacing old mulch with attractive stone around the house and planted shrubs. Very professional, had great ideas. Created a beautiful backyard. Highly recommend."</p><div class="rev-author">— HomeAdvisor Review</div></div>
@@ -172,29 +329,462 @@ footer{background:var(--dark);padding:2rem 3rem;display:flex;justify-content:spa
   </div>
 </div>
 
-<div class="cta" id="contact">
-  <h2>Let's Make Your Yard Great.</h2>
+<!-- BOOKING -->
+<div class="booking-section" id="booking">
+  <div class="booking-inner">
+    <div class="booking-side">
+      <div class="eyebrow">Free Estimate</div>
+      <h2 class="title" data-split>Get Your <span>Quote.</span></h2>
+      <p>Tell Rick what your yard needs and when. He'll text back same day with a real number — no vague ranges. Prefer to talk? <a href="tel:3148092756">(314) 809-2756</a> rings straight to him.</p>
+      <p style="font-size:.82rem;color:var(--green);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:0">☘ Same-day response · Father &amp; son · Local</p>
+    </div>
+    <div>
+      <form id="bookingForm" name="quote" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="quote"/>
+        <div style="display:none"><input name="bot-field"/></div>
+        <div class="form-row">
+          <div class="form-group"><label for="bName">Name</label><input type="text" id="bName" name="name" required placeholder="Your name"/></div>
+          <div class="form-group"><label for="bPhone">Phone</label><input type="tel" id="bPhone" name="phone" required placeholder="(314) 000-0000"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="bService">Service Needed</label><select id="bService" name="service" required><option value="" disabled selected>Choose...</option><option>Lawn Mowing (weekly/bi-weekly)</option><option>Landscaping &amp; Stone</option><option>Leaf Cleanup</option><option>Mulching</option><option>Shrub Trimming</option><option>Yard Cleanup (one-time)</option><option>Multiple / Not sure</option></select></div>
+          <div class="form-group"><label for="bSize">Yard Size</label><select id="bSize" name="size"><option value="" disabled selected>Approx.</option><option>Small (under 1/4 acre)</option><option>Medium (1/4 – 1/2 acre)</option><option>Large (1/2 – 1 acre)</option><option>Estate (1+ acre)</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="bZip">ZIP</label><input type="text" id="bZip" name="zip" placeholder="63301" pattern="[0-9]{5}"/></div>
+          <div class="form-group"><label for="bWhen">When?</label><select id="bWhen" name="timeline"><option value="" disabled selected>Timeline?</option><option>ASAP</option><option>This week</option><option>This month</option><option>Setting up recurring</option></select></div>
+        </div>
+        <div class="form-group"><label for="bNotes">Anything else?</label><textarea id="bNotes" name="notes" rows="3" placeholder="Special requests, problem areas, preferred day..."></textarea></div>
+        <button type="submit" class="btn-g magnetic" style="width:100%;padding:18px;font-size:.9rem;letter-spacing:2px"><span class="magnetic-inner">Send Quote Request</span></button>
+      </form>
+      <div id="bookingSuccess" class="booking-success" style="display:none">
+        <div class="eyebrow">Got It</div>
+        <h3 class="title" style="font-size:clamp(1.8rem,3vw,2.8rem)">We'll Be in <span>Touch.</span></h3>
+        <p style="font-size:.95rem;color:var(--gray);line-height:1.9;font-weight:400">Rick got your request and will text back today. Sooner? <a href="tel:3148092756" style="color:var(--green);font-weight:700;text-decoration:none">(314) 809-2756</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Let's Make Your<br>Yard Great.</h2>
   <p>Call Rick for a free estimate. Father and son service you can count on — St. Charles County's local lawn team.</p>
   <a href="tel:3148092756" class="cta-ph">(314) 809-2756</a>
-  <a href="tel:3148092756" class="btn-d" onclick="if(window.innerWidth>768){event.preventDefault();openBookModal()}">Get Your Free Quote</a>
+  <a href="tel:3148092756" class="btn-d magnetic" onclick="if(window.innerWidth>768){event.preventDefault();openBookModal()}"><span class="magnetic-inner">Get Your Free Quote</span></a>
 </div>
 
 <footer>
   <div class="fl">RJR LAWN &amp; LANDSCAPING</div>
-  <div class="fc">© 2026 RJR Lawn &amp; Landscaping · 212 Shelburne Dr, St. Charles, MO 63301</div>
+  <div class="fc">© 2026 RJR Lawn &amp; Landscaping · 212 Shelburne Dr, St. Charles, MO 63301 · (314) 809-2756</div>
 </footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="bookModal"><div class="modal-box"><button class="modal-close" onclick="closeModal()">&times;</button><h3>RJR Lawn &amp; Landscaping</h3><p>Ready to start? Give Rick a call.</p><a href="tel:3148092756" class="modal-phone">(314) 809-2756</a><div class="modal-addr">212 Shelburne Dr, St. Charles, MO 63301</div><div class="modal-btns"><a href="tel:3148092756" class="modal-btn-call">Call Now</a><a href="https://maps.google.com/?q=212+Shelburne+Dr+St+Charles+MO" target="_blank" class="modal-btn-map">Get Directions</a></div></div></div>
+<script>function openBookModal(){document.getElementById('bookModal').classList.add('active')}function closeModal(){document.getElementById('bookModal').classList.remove('active')}document.getElementById('bookModal').addEventListener('click',function(e){if(e.target===this)closeModal()});</script>
+
+<!-- CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+<!-- Scroll progress -->
+<script>(function(){var bar=document.getElementById('scrollBar');function upd(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight;bar.style.width=(m>0?(window.scrollY/m)*100:0)+'%'}window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd,{passive:true});upd()})();</script>
+
+<!-- Lenis -->
 <script>
-const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.style.opacity='1';i.target.style.transform='translateY(0)'}})},{threshold:0.1});
-document.querySelectorAll('.svc,.rev,.val-item').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(14px)';el.style.transition='opacity .5s ease,transform .5s ease';o.observe(el)});
+(function(){if(!window.Lenis||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;var lenis=new Lenis({lerp:0.1,smoothWheel:true,smoothTouch:false,wheelMultiplier:1});if(window.gsap&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0)}else{function r(t){lenis.raf(t);requestAnimationFrame(r)}requestAnimationFrame(r)}document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');if(id.length<2)return;var t=document.querySelector(id);if(!t)return;e.preventDefault();lenis.scrollTo(t,{offset:-60,duration:1.0})})})})();
 </script>
-<div class="cur" id="cur" style="background:#F5C518"></div><div class="cur-ring" id="curR" style="border-color:#F5C518"></div>
+
+<!-- ============================================================ -->
+<!-- THE SCROLLYTELLING ENGINE                                    -->
+<!-- One Three.js scene, scroll position drives camera/objects.   -->
+<!-- All beats render against the SAME world — feels like film.   -->
+<!-- ============================================================ -->
+<!--
+  TO PLUG IN REAL .GLB MODELS LATER (e.g. a real mower or trees):
+    1. Add GLTFLoader CDN:
+       <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/loaders/GLTFLoader.js"></script>
+    2. Replace buildMower() with:
+       new THREE.GLTFLoader().load('YOUR_MODEL.glb', function(gltf){
+         var mower = gltf.scene;
+         mower.scale.set(X,X,X); mower.position.set(...);
+         scene.add(mower);
+       });
+    3. Keep the rest of the scroll choreography — it's geometry-agnostic.
+-->
 <script>
-const C=document.getElementById("cur"),R=document.getElementById("curR");
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+"px";C.style.top=my+"px"});
-(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;R.style.left=rx+"px";R.style.top=ry+"px";requestAnimationFrame(loop)})();
-document.querySelectorAll("a,button,.svc,.svc-card,.rev,.service-card,.trust-card,.stat").forEach(el=>{el.addEventListener("mouseenter",()=>{R.style.transform="translate(-50%,-50%) scale(2.2)";R.style.opacity="0.9"});el.addEventListener("mouseleave",()=>{R.style.transform="translate(-50%,-50%) scale(1)";R.style.opacity="0.5"})});
+(function(){
+  if(!window.THREE||!window.gsap||!window.ScrollTrigger)return;
+  var canvas=document.getElementById('storyCanvas');
+  if(!canvas)return;
+  if(window.innerWidth<=900)return; // mobile gets static layout
+
+  // --- RENDERER, SCENE, CAMERA ---
+  var W=canvas.offsetWidth,H=canvas.offsetHeight;
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));
+  renderer.setSize(W,H);
+  renderer.setClearColor(0x1A2810,1);
+  var scene=new THREE.Scene();
+  scene.fog=new THREE.Fog(0x1A2810,30,140);
+
+  var camera=new THREE.PerspectiveCamera(48,W/H,0.1,500);
+  // Beat 1 starting position: low, looking across grass
+  camera.position.set(0,2.5,18);
+  camera.lookAt(0,1,0);
+
+  // --- SKY (gradient shader on a large dome) ---
+  var skyGeo=new THREE.SphereGeometry(200,32,16);
+  var skyMat=new THREE.ShaderMaterial({
+    side:THREE.BackSide,
+    uniforms:{uTop:{value:new THREE.Color(0x4A7BA8)},uBot:{value:new THREE.Color(0xF5C518)},uMix:{value:0}},
+    vertexShader:'varying float vY;void main(){vY=position.y;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+    fragmentShader:'uniform vec3 uTop;uniform vec3 uBot;uniform float uMix;varying float vY;void main(){float t=smoothstep(-100.0,180.0,vY);vec3 col=mix(uBot,uTop,t);gl_FragColor=vec4(col,1.0);}'
+  });
+  scene.add(new THREE.Mesh(skyGeo,skyMat));
+
+  // --- SUN (a bright circle billboard) ---
+  var sun=new THREE.Mesh(new THREE.CircleGeometry(7,32),new THREE.MeshBasicMaterial({color:0xFFEBA0,transparent:true,opacity:.85}));
+  sun.position.set(40,12,-90);
+  scene.add(sun);
+  var sunGlow=new THREE.Mesh(new THREE.CircleGeometry(18,32),new THREE.MeshBasicMaterial({color:0xFFEBA0,transparent:true,opacity:.18}));
+  sunGlow.position.copy(sun.position);
+  sunGlow.position.z-=.1;
+  scene.add(sunGlow);
+
+  // --- GROUND (dark soil base under the grass) ---
+  var ground=new THREE.Mesh(
+    new THREE.PlaneGeometry(300,300,1,1),
+    new THREE.MeshBasicMaterial({color:0x1F3A12})
+  );
+  ground.rotation.x=-Math.PI/2;
+  ground.position.y=0;
+  scene.add(ground);
+
+  // --- GRASS FIELD (instanced mesh of curved blades with wind shader) ---
+  // The shader has a uniform uCutLine that controls where blades are "mowed" (shrunk)
+  var BLADE_COUNT=4500;
+  var bladeGeo=new THREE.PlaneGeometry(0.13,1.6,1,4);
+  // Shift origin to bottom of blade so scaling shrinks toward ground
+  bladeGeo.translate(0,0.8,0);
+
+  var grassMat=new THREE.ShaderMaterial({
+    uniforms:{
+      uTime:{value:0},
+      uCutLine:{value:-50}, // x-coordinate; blades with x < uCutLine are "cut"
+      uCutWidth:{value:1.2}
+    },
+    vertexShader:`
+      uniform float uTime;
+      uniform float uCutLine;
+      uniform float uCutWidth;
+      attribute vec3 iPos;
+      attribute float iRot;
+      attribute float iHeight;
+      attribute vec3 iColor;
+      varying vec3 vColor;
+      varying float vT;
+      void main(){
+        vColor=iColor;
+        vT=uv.y;
+        // Rotate around Y for each instance
+        float cR=cos(iRot),sR=sin(iRot);
+        vec3 p=position;
+        // Wind: blades sway more at top. Phase varies per instance.
+        float windPhase=iPos.x*0.3+iPos.z*0.2;
+        float wind=sin(uTime*1.6+windPhase)*0.18*uv.y*uv.y;
+        p.x+=wind;
+        p.z+=cos(uTime*1.2+windPhase)*0.08*uv.y*uv.y;
+        // Cut: if instance x is past cut line, scale Y down (mowed)
+        float cutFactor=smoothstep(uCutLine-uCutWidth,uCutLine,iPos.x);
+        // cutFactor goes 0 (cut/mowed) → 1 (uncut/tall) as iPos.x increases past line
+        // Want: when uCutLine is far right, all blades are cut (small).
+        //       when uCutLine is far left, all blades are uncut (tall).
+        // So scaled height = iHeight * cutFactor + 0.15 * (1-cutFactor) ... a stubble baseline
+        float scaledY=iHeight*cutFactor+0.18*(1.0-cutFactor);
+        p.y*=scaledY;
+        // Apply per-instance rotation around Y
+        vec3 rp=vec3(p.x*cR-p.z*sR,p.y,p.x*sR+p.z*cR);
+        vec3 world=rp+iPos;
+        gl_Position=projectionMatrix*modelViewMatrix*vec4(world,1.0);
+      }
+    `,
+    fragmentShader:`
+      varying vec3 vColor;
+      varying float vT;
+      void main(){
+        // Gradient from darker base to lighter tip
+        vec3 col=mix(vColor*0.55,vColor*1.2,vT);
+        gl_FragColor=vec4(col,1.0);
+      }
+    `,
+    side:THREE.DoubleSide
+  });
+
+  // Build instance attributes
+  var iPos=new Float32Array(BLADE_COUNT*3);
+  var iRot=new Float32Array(BLADE_COUNT);
+  var iHeight=new Float32Array(BLADE_COUNT);
+  var iColor=new Float32Array(BLADE_COUNT*3);
+  var greens=[[0.176,0.353,0.106],[0.290,0.549,0.165],[0.376,0.643,0.243],[0.482,0.745,0.322]];
+  for(var i=0;i<BLADE_COUNT;i++){
+    iPos[i*3]=(Math.random()-.5)*90;
+    iPos[i*3+1]=0;
+    iPos[i*3+2]=(Math.random()-.5)*90;
+    iRot[i]=Math.random()*Math.PI*2;
+    iHeight[i]=0.7+Math.random()*0.7;
+    var c=greens[Math.floor(Math.random()*greens.length)];
+    iColor[i*3]=c[0];iColor[i*3+1]=c[1];iColor[i*3+2]=c[2];
+  }
+  var instGeo=new THREE.InstancedBufferGeometry();
+  instGeo.copy(bladeGeo);
+  instGeo.instanceCount=BLADE_COUNT;
+  instGeo.setAttribute('iPos',new THREE.InstancedBufferAttribute(iPos,3));
+  instGeo.setAttribute('iRot',new THREE.InstancedBufferAttribute(iRot,1));
+  instGeo.setAttribute('iHeight',new THREE.InstancedBufferAttribute(iHeight,1));
+  instGeo.setAttribute('iColor',new THREE.InstancedBufferAttribute(iColor,3));
+  var grass=new THREE.Mesh(instGeo,grassMat);
+  scene.add(grass);
+
+  // --- MOWER (procedural — geometry only, no model file needed) ---
+  // Body: red rectangular box
+  // Wheels: 4 cylinders
+  // Handle: tilted bar with rubber grips
+  // Engine box on top
+  var mower=new THREE.Group();
+  // Body (RJR yellow + green for brand alignment)
+  var body=new THREE.Mesh(new THREE.BoxGeometry(1.8,0.5,1.3),new THREE.MeshBasicMaterial({color:0xF5C518}));
+  body.position.y=0.45;
+  mower.add(body);
+  // Top engine block
+  var engine=new THREE.Mesh(new THREE.BoxGeometry(1,0.45,0.85),new THREE.MeshBasicMaterial({color:0x1A2810}));
+  engine.position.set(-.15,0.85,0);
+  mower.add(engine);
+  // Engine cap
+  var cap=new THREE.Mesh(new THREE.CylinderGeometry(0.18,0.18,0.18,12),new THREE.MeshBasicMaterial({color:0x2D5A1B}));
+  cap.position.set(-.15,1.16,0);
+  mower.add(cap);
+  // Wheels
+  function wheel(x,z){var w=new THREE.Mesh(new THREE.CylinderGeometry(0.32,0.32,0.18,16),new THREE.MeshBasicMaterial({color:0x111}));w.rotation.x=Math.PI/2;w.position.set(x,0.32,z);return w}
+  mower.add(wheel(0.7,0.55));mower.add(wheel(0.7,-0.55));
+  mower.add(wheel(-0.7,0.55));mower.add(wheel(-0.7,-0.55));
+  // Handle bar
+  var handleL=new THREE.Mesh(new THREE.CylinderGeometry(0.04,0.04,2.2,8),new THREE.MeshBasicMaterial({color:0x1A2810}));
+  handleL.position.set(-1.0,1.4,0.4);
+  handleL.rotation.z=Math.PI/3.5;
+  mower.add(handleL);
+  var handleR=handleL.clone();
+  handleR.position.z=-0.4;
+  mower.add(handleR);
+  var handleTop=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,0.9,8),new THREE.MeshBasicMaterial({color:0xC0392B}));
+  handleTop.position.set(-2.1,2.4,0);
+  handleTop.rotation.x=Math.PI/2;
+  mower.add(handleTop);
+  // Start mower off-screen left
+  mower.position.set(-60,0,-2);
+  mower.rotation.y=Math.PI/2; // facing right
+  scene.add(mower);
+
+  // --- TREE in distance (procedural — simple cone+cylinder, easter egg) ---
+  function makeTree(x,z,scale){
+    var t=new THREE.Group();
+    var trunk=new THREE.Mesh(new THREE.CylinderGeometry(0.3,0.4,1.8,8),new THREE.MeshBasicMaterial({color:0x4A3018}));
+    trunk.position.y=0.9;
+    t.add(trunk);
+    var top=new THREE.Mesh(new THREE.ConeGeometry(1.6,3.5,10),new THREE.MeshBasicMaterial({color:0x2D5A1B}));
+    top.position.y=3.2;
+    t.add(top);
+    t.position.set(x,0,z);
+    t.scale.set(scale,scale,scale);
+    return t;
+  }
+  scene.add(makeTree(-25,-30,1.4));
+  scene.add(makeTree(28,-35,1.7));
+  scene.add(makeTree(-38,-25,1.2));
+  scene.add(makeTree(35,-45,2));
+
+  // --- SCENE STATE OBJECT (animated by GSAP timeline) ---
+  var state={
+    camX:0,camY:2.5,camZ:18,
+    lookX:0,lookY:1,lookZ:0,
+    mowerX:-60,
+    cutLine:-50,
+    sunX:40,sunY:12,sunZ:-90,
+    skyTop:new THREE.Color(0x4A7BA8),
+    skyBot:new THREE.Color(0xF5C518),
+    skyMix:0,
+    fogNear:30,fogFar:140,fogCol:new THREE.Color(0x1A2810)
+  };
+
+  // --- THE SCROLL TIMELINE: 6 BEATS ---
+  // Total scroll = the .story section's height (600vh)
+  // Each beat occupies ~1/6 of the scroll
+  var tl=gsap.timeline({
+    scrollTrigger:{
+      trigger:'.story',
+      start:'top top',
+      end:'bottom bottom',
+      scrub:0.4,
+      pin:'.story-pin',
+      anticipatePin:1,
+      fastScrollEnd:true,
+      onUpdate:function(self){
+        // Active-beat indicator dots + overlay text
+        var p=self.progress;
+        var idx=Math.min(5,Math.floor(p*6));
+        var beats=document.querySelectorAll('.beat');
+        var dots=document.querySelectorAll('.brail-dot');
+        beats.forEach(function(b,i){b.classList.toggle('in',i===idx)});
+        dots.forEach(function(d,i){d.classList.toggle('active',i===idx)});
+      }
+    }
+  });
+
+  // Beat 1 → Beat 2: Camera pulls back and up (overgrown grass to wider view)
+  tl.to(state,{camX:-8,camY:6,camZ:25,lookX:0,lookY:1.5,lookZ:-5,duration:1,ease:'power1.inOut'},0)
+    .to(state,{skyTop:new THREE.Color(0x6B96B8),duration:1,ease:'none'},0)
+    // Beat 2 → Beat 3: Camera glides left as mower drives in from left
+    .to(state,{camX:-15,camY:4,camZ:16,lookX:-8,lookY:1,lookZ:-3,duration:1,ease:'power1.inOut'},1)
+    .to(state,{mowerX:-12,duration:1,ease:'power1.in'},1)
+    // Beat 3 → Beat 4: Mower cuts across; camera follows; cutLine sweeps right
+    .to(state,{mowerX:25,cutLine:25,duration:1.2,ease:'power1.inOut'},2)
+    .to(state,{camX:5,camY:5,camZ:18,lookX:10,lookY:1,lookZ:0,duration:1.2,ease:'power1.inOut'},2)
+    // Beat 4 → Beat 5: Camera flies UP to top-down overview
+    .to(state,{camX:0,camY:35,camZ:1,lookX:0,lookY:0,lookZ:0,duration:1,ease:'power2.inOut'},3.2)
+    .to(state,{mowerX:50,duration:1,ease:'power1.in'},3.2)
+    .to(state,{skyTop:new THREE.Color(0x4A8C2A),skyMix:1,duration:1,ease:'none'},3.2)
+    // Beat 5 → Beat 6: Camera back down, looking at finished lawn, golden hour
+    .to(state,{camX:6,camY:3.5,camZ:14,lookX:0,lookY:1,lookZ:-2,duration:1,ease:'power2.inOut'},4.2)
+    .to(state,{skyTop:new THREE.Color(0xC7793B),skyBot:new THREE.Color(0xF0A050),sunY:6,duration:1,ease:'none'},4.2)
+    // Beat 6: Camera tilts up to sky
+    .to(state,{camY:5,lookY:8,lookZ:-20,duration:1,ease:'power2.inOut'},5.2)
+    .to(state,{skyTop:new THREE.Color(0x2A3F60),skyBot:new THREE.Color(0xC7793B),duration:1,ease:'none'},5.2);
+
+  // --- RENDER LOOP ---
+  var clock=new THREE.Clock();
+  var heroVisible=true;
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){heroVisible=e[0].isIntersecting},{threshold:0.01}).observe(canvas);
+  }
+  window.addEventListener('resize',function(){
+    if(window.innerWidth<=900)return;
+    W=canvas.offsetWidth;H=canvas.offsetHeight;
+    renderer.setSize(W,H);camera.aspect=W/H;camera.updateProjectionMatrix();
+  },{passive:true});
+
+  function render(){
+    requestAnimationFrame(render);
+    if(!heroVisible)return;
+    var t=clock.getElapsedTime();
+    grassMat.uniforms.uTime.value=t;
+    grassMat.uniforms.uCutLine.value=state.cutLine;
+
+    camera.position.set(state.camX,state.camY,state.camZ);
+    camera.lookAt(state.lookX,state.lookY,state.lookZ);
+
+    mower.position.x=state.mowerX;
+    // Spin wheels as mower moves (rough kinetic effect)
+    var wheelSpin=t*4;
+    mower.children.forEach(function(c){
+      if(c.geometry&&c.geometry.type==='CylinderGeometry'&&c.material.color&&c.material.color.r<0.1&&c.position.y<0.4){
+        c.rotation.y=wheelSpin;
+      }
+    });
+    // Mower wobbles slightly
+    mower.rotation.z=Math.sin(t*3)*0.02;
+
+    sun.position.set(state.sunX,state.sunY,state.sunZ);
+    sunGlow.position.set(state.sunX,state.sunY,state.sunZ-0.1);
+
+    skyMat.uniforms.uTop.value=state.skyTop;
+    skyMat.uniforms.uBot.value=state.skyBot;
+    skyMat.uniforms.uMix.value=state.skyMix;
+    scene.fog.color.copy(state.skyBot);
+    renderer.setClearColor(state.skyBot,1);
+
+    renderer.render(scene,camera);
+  }
+  render();
+
+  // Click rail to jump to beat
+  document.querySelectorAll('.brail-dot').forEach(function(d){
+    d.addEventListener('click',function(){
+      var beat=parseInt(d.dataset.beat,10);
+      var story=document.querySelector('.story');
+      var rect=story.getBoundingClientRect();
+      var pageTop=window.scrollY+rect.top;
+      var sectionH=story.offsetHeight-window.innerHeight;
+      var targetY=pageTop+sectionH*(beat/5.5);
+      if(window.__lenis){window.__lenis.scrollTo(targetY,{duration:1.2})}
+      else{window.scrollTo({top:targetY,behavior:'smooth'})}
+    });
+  });
+})();
 </script>
-<div class="modal-overlay" id="bookModal"><div class="modal-box"><button class="modal-close" onclick="closeModal()"></body>times;</button><h3>RJR Lawn </body> Landscaping</h3><p>Ready to book? Give us a call or find us on the map.</p><a href="tel:3148092756" class="modal-phone">(314) 809-2756</a><div class="modal-addr">212 Shelburne Dr, St. Charles, MO 63301</div><div class="modal-btns"><a href="tel:3148092756" class="modal-btn-call">Call Now</a><a href="https://maps.google.com/?q=212+Shelburne+Dr+St+Charles+MO" target="_blank" class="modal-btn-map">Get Directions</a></div></div></div><script>function openBookModal(){document.getElementById('bookModal').classList.add('active')}function closeModal(){document.getElementById('bookModal').classList.remove('active')}document.getElementById('bookModal').addEventListener('click',function(e){if(e.target===this)closeModal()});</script>
+
+<!-- Split text -->
+<script>
+(function(){
+  if(!window.gsap||!window.ScrollTrigger)return;
+  function split(el){
+    if(el.dataset.splitDone)return;
+    el.dataset.splitDone='1';
+    function proc(n){
+      if(n.nodeType===3){
+        var f=document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function(w){
+          if(/^\s+$/.test(w)){f.appendChild(document.createTextNode(w));return}
+          var ws=document.createElement('span');ws.style.display='inline-block';ws.style.whiteSpace='nowrap';
+          for(var i=0;i<w.length;i++){var s=document.createElement('span');s.style.display='inline-block';s.style.transform='translateY(110%)';s.style.opacity='0';s.style.transition='transform .9s cubic-bezier(.22,1,.36,1),opacity .8s ease';s.textContent=w[i];ws.appendChild(s)}
+          f.appendChild(ws);
+        });
+        n.parentNode.replaceChild(f,n);
+      }else if(n.nodeType===1){Array.from(n.childNodes).forEach(proc)}
+    }
+    Array.from(el.childNodes).forEach(proc);
+    var chars=el.querySelectorAll('span > span');
+    ScrollTrigger.create({trigger:el,start:'top 88%',once:true,onEnter:function(){chars.forEach(function(c,i){setTimeout(function(){c.style.transform='translateY(0)';c.style.opacity='1'},i*15)})}});
+  }
+  document.querySelectorAll('[data-split]').forEach(split);
+  gsap.utils.toArray('.svc').forEach(function(c){gsap.fromTo(c,{y:24,opacity:0},{y:0,opacity:1,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 90%',once:true}})});
+  gsap.utils.toArray('.val-item').forEach(function(c,i){gsap.fromTo(c,{x:-20,opacity:0},{x:0,opacity:1,duration:.6,delay:i*0.1,ease:'power2.out',scrollTrigger:{trigger:'.val-list',start:'top 80%',once:true}})});
+  gsap.utils.toArray('.rev').forEach(function(c,i){gsap.fromTo(c,{y:24,opacity:0},{y:0,opacity:1,duration:.7,delay:i*0.1,ease:'power2.out',scrollTrigger:{trigger:'.rev-grid',start:'top 80%',once:true}})});
+})();
+</script>
+
+<!-- Magnetic -->
+<script>
+(function(){
+  if(window.matchMedia('(pointer:coarse)').matches)return;
+  function bind(el){
+    var inner=el.querySelector('.magnetic-inner');
+    if(!inner){var s=document.createElement('span');s.className='magnetic-inner';while(el.firstChild)s.appendChild(el.firstChild);el.appendChild(s);inner=s}
+    var raf=0,tx=0,ty=0;
+    function apply(){raf=0;el.style.transform='translate('+(tx*.3)+'px,'+(ty*.3)+'px)';inner.style.transform='translate('+(tx*.5)+'px,'+(ty*.5)+'px)'}
+    el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();tx=e.clientX-r.left-r.width/2;ty=e.clientY-r.top-r.height/2;if(!raf)raf=requestAnimationFrame(apply)});
+    el.addEventListener('mouseleave',function(){if(raf){cancelAnimationFrame(raf);raf=0}el.style.transform='';inner.style.transform=''});
+  }
+  document.querySelectorAll('.magnetic').forEach(bind);
+})();
+</script>
+
+<!-- Booking form -->
+<script>
+(function(){
+  var form=document.getElementById('bookingForm'),success=document.getElementById('bookingSuccess');
+  if(!form)return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type=submit]');
+    var inner=btn.querySelector('.magnetic-inner')||btn;
+    var orig=inner.textContent;inner.textContent='Sending...';btn.disabled=true;
+    try{await fetch('/',{method:'POST',body:new FormData(form)});form.style.display='none';success.style.display='block'}
+    catch(err){inner.textContent=orig;btn.disabled=false;alert('Something went wrong. Call (314) 809-2756.')}
+  });
+})();
+</script>
+
 </body>
 </html>
