@@ -426,9 +426,10 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
   var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));
   renderer.setSize(W,H);
-  renderer.setClearColor(0x1A2810,1);
+  renderer.setClearColor(0x88B2D4,1);
   var scene=new THREE.Scene();
-  scene.fog=new THREE.Fog(0x1A2810,30,140);
+  // Fog: pale horizon haze (gets animated independently of sky)
+  scene.fog=new THREE.Fog(0xC8DFEF,40,150);
 
   var camera=new THREE.PerspectiveCamera(48,W/H,0.1,500);
   // Beat 1 starting position: low, looking across grass
@@ -437,11 +438,13 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
 
   // --- SKY (gradient shader on a large dome) ---
   var skyGeo=new THREE.SphereGeometry(200,32,16);
+  // skyTop = deep sky color (overhead). skyBot = horizon haze (where sky meets ground).
+  // NEITHER should be saturated yellow — yellow lives only on the sun mesh.
   var skyMat=new THREE.ShaderMaterial({
     side:THREE.BackSide,
-    uniforms:{uTop:{value:new THREE.Color(0x4A7BA8)},uBot:{value:new THREE.Color(0xF5C518)},uMix:{value:0}},
+    uniforms:{uTop:{value:new THREE.Color(0x4A7BA8)},uBot:{value:new THREE.Color(0xC8DFEF)},uMix:{value:0}},
     vertexShader:'varying float vY;void main(){vY=position.y;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
-    fragmentShader:'uniform vec3 uTop;uniform vec3 uBot;uniform float uMix;varying float vY;void main(){float t=smoothstep(-100.0,180.0,vY);vec3 col=mix(uBot,uTop,t);gl_FragColor=vec4(col,1.0);}'
+    fragmentShader:'uniform vec3 uTop;uniform vec3 uBot;uniform float uMix;varying float vY;void main(){float t=smoothstep(-30.0,160.0,vY);vec3 col=mix(uBot,uTop,t);gl_FragColor=vec4(col,1.0);}'
   });
   scene.add(new THREE.Mesh(skyGeo,skyMat));
 
@@ -465,7 +468,7 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
 
   // --- GRASS FIELD (instanced mesh of curved blades with wind shader) ---
   // The shader has a uniform uCutLine that controls where blades are "mowed" (shrunk)
-  var BLADE_COUNT=4500;
+  var BLADE_COUNT=2400;
   var bladeGeo=new THREE.PlaneGeometry(0.13,1.6,1,4);
   // Shift origin to bottom of blade so scaling shrinks toward ground
   bladeGeo.translate(0,0.8,0);
@@ -613,9 +616,8 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
     cutLine:-50,
     sunX:40,sunY:12,sunZ:-90,
     skyTop:new THREE.Color(0x4A7BA8),
-    skyBot:new THREE.Color(0xF5C518),
-    skyMix:0,
-    fogNear:30,fogFar:140,fogCol:new THREE.Color(0x1A2810)
+    skyBot:new THREE.Color(0xC8DFEF),
+    fogCol:new THREE.Color(0xC8DFEF)
   };
 
   // --- THE SCROLL TIMELINE: 6 BEATS ---
@@ -626,12 +628,11 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
       trigger:'.story',
       start:'top top',
       end:'bottom bottom',
-      scrub:0.4,
+      scrub:0.6,
       pin:'.story-pin',
       anticipatePin:1,
       fastScrollEnd:true,
       onUpdate:function(self){
-        // Active-beat indicator dots + overlay text
         var p=self.progress;
         var idx=Math.min(5,Math.floor(p*6));
         var beats=document.querySelectorAll('.beat');
@@ -644,23 +645,22 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
 
   // Beat 1 → Beat 2: Camera pulls back and up (overgrown grass to wider view)
   tl.to(state,{camX:-8,camY:6,camZ:25,lookX:0,lookY:1.5,lookZ:-5,duration:1,ease:'power1.inOut'},0)
-    .to(state,{skyTop:new THREE.Color(0x6B96B8),duration:1,ease:'none'},0)
-    // Beat 2 → Beat 3: Camera glides left as mower drives in from left
+    // Beat 2 → Beat 3: Camera glides left, mower enters
     .to(state,{camX:-15,camY:4,camZ:16,lookX:-8,lookY:1,lookZ:-3,duration:1,ease:'power1.inOut'},1)
     .to(state,{mowerX:-12,duration:1,ease:'power1.in'},1)
     // Beat 3 → Beat 4: Mower cuts across; camera follows; cutLine sweeps right
-    .to(state,{mowerX:25,cutLine:25,duration:1.2,ease:'power1.inOut'},2)
-    .to(state,{camX:5,camY:5,camZ:18,lookX:10,lookY:1,lookZ:0,duration:1.2,ease:'power1.inOut'},2)
-    // Beat 4 → Beat 5: Camera flies UP to top-down overview
-    .to(state,{camX:0,camY:35,camZ:1,lookX:0,lookY:0,lookZ:0,duration:1,ease:'power2.inOut'},3.2)
-    .to(state,{mowerX:50,duration:1,ease:'power1.in'},3.2)
-    .to(state,{skyTop:new THREE.Color(0x4A8C2A),skyMix:1,duration:1,ease:'none'},3.2)
-    // Beat 5 → Beat 6: Camera back down, looking at finished lawn, golden hour
-    .to(state,{camX:6,camY:3.5,camZ:14,lookX:0,lookY:1,lookZ:-2,duration:1,ease:'power2.inOut'},4.2)
-    .to(state,{skyTop:new THREE.Color(0xC7793B),skyBot:new THREE.Color(0xF0A050),sunY:6,duration:1,ease:'none'},4.2)
-    // Beat 6: Camera tilts up to sky
-    .to(state,{camY:5,lookY:8,lookZ:-20,duration:1,ease:'power2.inOut'},5.2)
-    .to(state,{skyTop:new THREE.Color(0x2A3F60),skyBot:new THREE.Color(0xC7793B),duration:1,ease:'none'},5.2);
+    .to(state,{mowerX:25,cutLine:25,duration:1.4,ease:'power1.inOut'},2)
+    .to(state,{camX:5,camY:5,camZ:18,lookX:10,lookY:1,lookZ:0,duration:1.4,ease:'power1.inOut'},2)
+    // Beat 4 → Beat 5: Camera lifts to elevated angled view (NOT extreme top-down — that was jarring)
+    .to(state,{camX:2,camY:18,camZ:14,lookX:0,lookY:0,lookZ:-2,duration:1.6,ease:'power2.inOut'},3.4)
+    .to(state,{mowerX:50,duration:1,ease:'power1.in'},3.4)
+    .to(state,{skyTop:new THREE.Color(0x6BA0C8),skyBot:new THREE.Color(0xD8E8F0),duration:1.6,ease:'none'},3.4)
+    // Beat 5: Camera back to ground level, golden-hour color grade
+    .to(state,{camX:6,camY:3.5,camZ:14,lookX:0,lookY:1,lookZ:-2,duration:1.5,ease:'power2.inOut'},5.0)
+    .to(state,{skyTop:new THREE.Color(0xE89855),skyBot:new THREE.Color(0xF5D5B0),sunY:7,duration:1.5,ease:'none'},5.0)
+    // Beat 6: Camera tilts up to sunset sky
+    .to(state,{camY:5,lookY:8,lookZ:-20,duration:1.2,ease:'power2.inOut'},6.5)
+    .to(state,{skyTop:new THREE.Color(0x2A3F60),skyBot:new THREE.Color(0xE89855),duration:1.2,ease:'none'},6.5);
 
   // --- RENDER LOOP ---
   var clock=new THREE.Clock();
@@ -700,7 +700,7 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
 
     skyMat.uniforms.uTop.value=state.skyTop;
     skyMat.uniforms.uBot.value=state.skyBot;
-    skyMat.uniforms.uMix.value=state.skyMix;
+    // Fog matches horizon haze (skyBot) so distant objects fade into the sky line, not into yellow
     scene.fog.color.copy(state.skyBot);
     renderer.setClearColor(state.skyBot,1);
 
