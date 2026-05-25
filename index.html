@@ -609,16 +609,21 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
   scene.add(makeTree(35,-45,2));
 
   // --- SCENE STATE OBJECT (animated by GSAP timeline) ---
+  // IMPORTANT: GSAP can ONLY tween primitive numbers, NOT THREE.Color objects.
+  // Sky colors stored as r/g/b normalized numbers (0-1) and applied via setRGB() each frame.
   var state={
     camX:0,camY:2.5,camZ:18,
     lookX:0,lookY:1,lookZ:0,
     mowerX:-60,
     cutLine:-50,
     sunX:40,sunY:12,sunZ:-90,
-    skyTop:new THREE.Color(0x4A7BA8),
-    skyBot:new THREE.Color(0xC8DFEF),
-    fogCol:new THREE.Color(0xC8DFEF)
+    // 0x4A7BA8 = rgb(74,123,168) → normalized
+    skyTopR:0.290,skyTopG:0.482,skyTopB:0.659,
+    // 0xC8DFEF = rgb(200,223,239) → normalized
+    skyBotR:0.784,skyBotG:0.875,skyBotB:0.937
   };
+  // Reusable Color object for the clear color (avoids per-frame allocation)
+  var _clearColor=new THREE.Color();
 
   // --- THE SCROLL TIMELINE: 6 BEATS ---
   // Total scroll = the .story section's height (600vh)
@@ -643,7 +648,7 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
     }
   });
 
-  // Beat 1 → Beat 2: Camera pulls back and up (overgrown grass to wider view)
+  // Beat 1 → Beat 2: Camera pulls back and up
   tl.to(state,{camX:-8,camY:6,camZ:25,lookX:0,lookY:1.5,lookZ:-5,duration:1,ease:'power1.inOut'},0)
     // Beat 2 → Beat 3: Camera glides left, mower enters
     .to(state,{camX:-15,camY:4,camZ:16,lookX:-8,lookY:1,lookZ:-3,duration:1,ease:'power1.inOut'},1)
@@ -651,16 +656,19 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
     // Beat 3 → Beat 4: Mower cuts across; camera follows; cutLine sweeps right
     .to(state,{mowerX:25,cutLine:25,duration:1.4,ease:'power1.inOut'},2)
     .to(state,{camX:5,camY:5,camZ:18,lookX:10,lookY:1,lookZ:0,duration:1.4,ease:'power1.inOut'},2)
-    // Beat 4 → Beat 5: Camera lifts to elevated angled view (NOT extreme top-down — that was jarring)
+    // Beat 4 → Beat 5: Camera lifts to elevated angled view
     .to(state,{camX:2,camY:18,camZ:14,lookX:0,lookY:0,lookZ:-2,duration:1.6,ease:'power2.inOut'},3.4)
     .to(state,{mowerX:50,duration:1,ease:'power1.in'},3.4)
-    .to(state,{skyTop:new THREE.Color(0x6BA0C8),skyBot:new THREE.Color(0xD8E8F0),duration:1.6,ease:'none'},3.4)
+    // Brighter daylight sky for the elevated view — 0x6BA0C8 / 0xD8E8F0 in 0-1 RGB
+    .to(state,{skyTopR:0.420,skyTopG:0.627,skyTopB:0.784,skyBotR:0.847,skyBotG:0.910,skyBotB:0.941,duration:1.6,ease:'none'},3.4)
     // Beat 5: Camera back to ground level, golden-hour color grade
     .to(state,{camX:6,camY:3.5,camZ:14,lookX:0,lookY:1,lookZ:-2,duration:1.5,ease:'power2.inOut'},5.0)
-    .to(state,{skyTop:new THREE.Color(0xE89855),skyBot:new THREE.Color(0xF5D5B0),sunY:7,duration:1.5,ease:'none'},5.0)
+    // Golden hour: 0xE89855 sky top / 0xF5D5B0 horizon
+    .to(state,{skyTopR:0.910,skyTopG:0.596,skyTopB:0.333,skyBotR:0.961,skyBotG:0.835,skyBotB:0.690,sunY:7,duration:1.5,ease:'none'},5.0)
     // Beat 6: Camera tilts up to sunset sky
     .to(state,{camY:5,lookY:8,lookZ:-20,duration:1.2,ease:'power2.inOut'},6.5)
-    .to(state,{skyTop:new THREE.Color(0x2A3F60),skyBot:new THREE.Color(0xE89855),duration:1.2,ease:'none'},6.5);
+    // Sunset: 0x2A3F60 deep blue overhead / 0xE89855 burning horizon
+    .to(state,{skyTopR:0.165,skyTopG:0.247,skyTopB:0.376,skyBotR:0.910,skyBotG:0.596,skyBotB:0.333,duration:1.2,ease:'none'},6.5);
 
   // --- RENDER LOOP ---
   var clock=new THREE.Clock();
@@ -698,11 +706,14 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
     sun.position.set(state.sunX,state.sunY,state.sunZ);
     sunGlow.position.set(state.sunX,state.sunY,state.sunZ-0.1);
 
-    skyMat.uniforms.uTop.value=state.skyTop;
-    skyMat.uniforms.uBot.value=state.skyBot;
-    // Fog matches horizon haze (skyBot) so distant objects fade into the sky line, not into yellow
-    scene.fog.color.copy(state.skyBot);
-    renderer.setClearColor(state.skyBot,1);
+    // Apply tweened r/g/b numbers to color uniforms via setRGB (NOT direct assignment —
+    // GSAP can't tween THREE.Color objects, so we tween numbers and convert here)
+    skyMat.uniforms.uTop.value.setRGB(state.skyTopR,state.skyTopG,state.skyTopB);
+    skyMat.uniforms.uBot.value.setRGB(state.skyBotR,state.skyBotG,state.skyBotB);
+    // Fog + clear color match horizon haze so distant objects fade into the sky line
+    scene.fog.color.setRGB(state.skyBotR,state.skyBotG,state.skyBotB);
+    _clearColor.setRGB(state.skyBotR,state.skyBotG,state.skyBotB);
+    renderer.setClearColor(_clearColor,1);
 
     renderer.render(scene,camera);
   }
