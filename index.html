@@ -585,7 +585,8 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
   handleTop.position.set(-2.1,2.4,0);
   handleTop.rotation.x=Math.PI/2;
   mower.add(handleTop);
-  // Start mower off-screen left
+  // Start mower off-screen left. Scale up 1.6x so it's clearly visible at distance.
+  mower.scale.set(1.6,1.6,1.6);
   mower.position.set(-60,0,-2);
   mower.rotation.y=Math.PI/2; // facing right
   scene.add(mower);
@@ -648,23 +649,24 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
     }
   });
 
-  // Beat 1 → Beat 2: Camera pulls back and up
-  tl.to(state,{camX:-8,camY:6,camZ:25,lookX:0,lookY:1.5,lookZ:-5,duration:1,ease:'power1.inOut'},0)
-    // Beat 2 → Beat 3: Camera glides left, mower enters
-    .to(state,{camX:-15,camY:4,camZ:16,lookX:-8,lookY:1,lookZ:-3,duration:1,ease:'power1.inOut'},1)
+  // Beat 1 → Beat 2: Camera pulls back, tilts up so we see sky + tree silhouettes
+  tl.to(state,{camX:-8,camY:7,camZ:28,lookX:0,lookY:4,lookZ:-15,duration:1,ease:'power1.inOut'},0)
+    // Beat 2 → Beat 3: Camera glides left to greet the incoming mower (eye-level tracking)
+    .to(state,{camX:-18,camY:3.5,camZ:14,lookX:-10,lookY:2,lookZ:-2,duration:1,ease:'power1.inOut'},1)
     .to(state,{mowerX:-12,duration:1,ease:'power1.in'},1)
-    // Beat 3 → Beat 4: Mower cuts across; camera follows; cutLine sweeps right
+    // Beat 3 → Beat 4: Mower cuts across; camera tracks alongside slightly elevated
     .to(state,{mowerX:25,cutLine:25,duration:1.4,ease:'power1.inOut'},2)
-    .to(state,{camX:5,camY:5,camZ:18,lookX:10,lookY:1,lookZ:0,duration:1.4,ease:'power1.inOut'},2)
-    // Beat 4 → Beat 5: Camera lifts to elevated angled view
-    .to(state,{camX:2,camY:18,camZ:14,lookX:0,lookY:0,lookZ:-2,duration:1.6,ease:'power2.inOut'},3.4)
-    .to(state,{mowerX:50,duration:1,ease:'power1.in'},3.4)
-    // Brighter daylight sky for the elevated view — 0x6BA0C8 / 0xD8E8F0 in 0-1 RGB
+    .to(state,{camX:8,camY:6,camZ:16,lookX:15,lookY:2,lookZ:-2,duration:1.4,ease:'power1.inOut'},2)
+    // Beat 4 → Beat 5: Camera elevates AND tilts toward horizon so the sky is visible
+    // (NOT looking straight down — that hides the entire color grade)
+    .to(state,{camX:0,camY:10,camZ:32,lookX:0,lookY:6,lookZ:-15,duration:1.6,ease:'power2.inOut'},3.4)
+    .to(state,{mowerX:55,duration:1,ease:'power1.in'},3.4)
+    // Brighter daylight sky for this elevated wide-shot — 0x6BA0C8 / 0xD8E8F0
     .to(state,{skyTopR:0.420,skyTopG:0.627,skyTopB:0.784,skyBotR:0.847,skyBotG:0.910,skyBotB:0.941,duration:1.6,ease:'none'},3.4)
-    // Beat 5: Camera back to ground level, golden-hour color grade
-    .to(state,{camX:6,camY:3.5,camZ:14,lookX:0,lookY:1,lookZ:-2,duration:1.5,ease:'power2.inOut'},5.0)
+    // Beat 5: Camera back down to ground level looking at horizon, golden hour
+    .to(state,{camX:6,camY:5,camZ:18,lookX:-2,lookY:5,lookZ:-25,duration:1.5,ease:'power2.inOut'},5.0)
     // Golden hour: 0xE89855 sky top / 0xF5D5B0 horizon
-    .to(state,{skyTopR:0.910,skyTopG:0.596,skyTopB:0.333,skyBotR:0.961,skyBotG:0.835,skyBotB:0.690,sunY:7,duration:1.5,ease:'none'},5.0)
+    .to(state,{skyTopR:0.910,skyTopG:0.596,skyTopB:0.333,skyBotR:0.961,skyBotG:0.835,skyBotB:0.690,sunY:7,sunX:25,duration:1.5,ease:'none'},5.0)
     // Beat 6: Camera tilts up to sunset sky
     .to(state,{camY:5,lookY:8,lookZ:-20,duration:1.2,ease:'power2.inOut'},6.5)
     // Sunset: 0x2A3F60 deep blue overhead / 0xE89855 burning horizon
