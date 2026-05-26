@@ -31,9 +31,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;padding:0 3rem;d
 .beat.in{opacity:1;transform:translateY(0);pointer-events:auto}
 .beat-inner{max-width:1100px;width:100%;margin:0 auto}
 .beat-tag{display:inline-block;background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.4);color:var(--yellow);font-size:.7rem;letter-spacing:4px;text-transform:uppercase;padding:7px 16px;margin-bottom:2rem;font-weight:700;backdrop-filter:blur(4px)}
-.beat-h1{font-weight:900;font-size:clamp(3.5rem,9vw,9rem);line-height:.95;color:#fff;letter-spacing:-2px;margin-bottom:1.5rem;text-shadow:0 4px 24px rgba(0,0,0,.4)}
-.beat-h1 em{color:var(--yellow);font-style:normal;display:block}
-.beat-sub{font-size:1.1rem;color:rgba(255,255,255,.85);line-height:1.8;max-width:560px;margin-bottom:2.5rem;font-weight:400;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.beat-h1{font-weight:900;font-size:clamp(3.5rem,9vw,9rem);line-height:.95;color:#fff;letter-spacing:-2px;margin-bottom:1.5rem;text-shadow:0 4px 24px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.4)}
+.beat-h1 em{color:var(--yellow);font-style:normal;display:block;text-shadow:0 4px 24px rgba(0,0,0,.65),0 2px 6px rgba(0,0,0,.45)}
+.beat-sub{font-size:1.1rem;color:#fff;line-height:1.8;max-width:560px;margin-bottom:2.5rem;font-weight:500;text-shadow:0 2px 8px rgba(0,0,0,.85),0 0 24px rgba(0,0,0,.5);position:relative;padding:.4rem 0}
 .beat-btns{display:flex;gap:1rem;flex-wrap:wrap}
 .beat-stat{display:flex;gap:3rem;margin-top:2rem;flex-wrap:wrap}
 .beat-stat-item{display:flex;flex-direction:column;color:#fff}
@@ -394,7 +394,13 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
 
 <!-- Lenis -->
 <script>
-(function(){if(!window.Lenis||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;var lenis=new Lenis({lerp:0.1,smoothWheel:true,smoothTouch:false,wheelMultiplier:1});if(window.gsap&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0)}else{function r(t){lenis.raf(t);requestAnimationFrame(r)}requestAnimationFrame(r)}document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');if(id.length<2)return;var t=document.querySelector(id);if(!t)return;e.preventDefault();lenis.scrollTo(t,{offset:-60,duration:1.0})})})})();
+(function(){if(!window.Lenis||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+// lerp:0.07 = MORE smoothing than 0.1 (lower = more inertia)
+// wheelMultiplier:0.85 = slightly less aggressive scroll per wheel tick
+var lenis=new Lenis({lerp:0.07,smoothWheel:true,smoothTouch:false,wheelMultiplier:0.85,touchMultiplier:1.5});
+window.__lenis=lenis;
+if(window.gsap&&window.ScrollTrigger){gsap.registerPlugin(ScrollTrigger);lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0)}else{function r(t){lenis.raf(t);requestAnimationFrame(r)}requestAnimationFrame(r)}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');if(id.length<2)return;var t=document.querySelector(id);if(!t)return;e.preventDefault();lenis.scrollTo(t,{offset:-60,duration:1.2})})})})();
 </script>
 
 <!-- ============================================================ -->
@@ -452,7 +458,8 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
   var sun=new THREE.Mesh(new THREE.CircleGeometry(7,32),new THREE.MeshBasicMaterial({color:0xFFEBA0,transparent:true,opacity:.85}));
   sun.position.set(40,12,-90);
   scene.add(sun);
-  var sunGlow=new THREE.Mesh(new THREE.CircleGeometry(18,32),new THREE.MeshBasicMaterial({color:0xFFEBA0,transparent:true,opacity:.18}));
+  // Reduced halo (was 18) so it doesn't dominate the frame in tighter shots
+  var sunGlow=new THREE.Mesh(new THREE.CircleGeometry(11,32),new THREE.MeshBasicMaterial({color:0xFFEBA0,transparent:true,opacity:.22}));
   sunGlow.position.copy(sun.position);
   sunGlow.position.z-=.1;
   scene.add(sunGlow);
@@ -573,21 +580,43 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
   function wheel(x,z){var w=new THREE.Mesh(new THREE.CylinderGeometry(0.32,0.32,0.18,16),new THREE.MeshBasicMaterial({color:0x111}));w.rotation.x=Math.PI/2;w.position.set(x,0.32,z);return w}
   mower.add(wheel(0.7,0.55));mower.add(wheel(0.7,-0.55));
   mower.add(wheel(-0.7,0.55));mower.add(wheel(-0.7,-0.55));
-  // Handle bar
-  var handleL=new THREE.Mesh(new THREE.CylinderGeometry(0.04,0.04,2.2,8),new THREE.MeshBasicMaterial({color:0x1A2810}));
-  handleL.position.set(-1.0,1.4,0.4);
-  handleL.rotation.z=Math.PI/3.5;
+  // Handle bar — diagonal bars + connecting T-bar (math-aligned so they actually connect)
+  // Both bars angle BACK from body (Math.PI/3.5 ≈ 51°) over length 2.2.
+  // Base (where bar meets body): x=-0.6, y=0.5. End point computed below.
+  var hAngle=Math.PI/3.5, hLen=2.2;
+  var baseX=-0.6, baseY=0.5;
+  var tipX=baseX - Math.sin(hAngle)*hLen;   // -0.6 - 1.72 = -2.32
+  var tipY=baseY + Math.cos(hAngle)*hLen;   //  0.5 + 1.37 =  1.87
+  var midX=(baseX+tipX)/2, midY=(baseY+tipY)/2;
+  var darkMat=new THREE.MeshBasicMaterial({color:0x1A2810});
+  var redMat=new THREE.MeshBasicMaterial({color:0xC0392B});
+  // Left bar (z=+0.4) — three.js cylinder defaults to Y-axis; rotateZ tilts it
+  var handleL=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,hLen,8),darkMat);
+  handleL.position.set(midX,midY,0.42);
+  handleL.rotation.z=hAngle;
   mower.add(handleL);
-  var handleR=handleL.clone();
-  handleR.position.z=-0.4;
+  // Right bar (z=-0.4)
+  var handleR=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,hLen,8),darkMat);
+  handleR.position.set(midX,midY,-0.42);
+  handleR.rotation.z=hAngle;
   mower.add(handleR);
-  var handleTop=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,0.9,8),new THREE.MeshBasicMaterial({color:0xC0392B}));
-  handleTop.position.set(-2.1,2.4,0);
-  handleTop.rotation.x=Math.PI/2;
-  mower.add(handleTop);
-  // Start mower off-screen left. Scale up 1.6x so it's clearly visible at distance.
-  mower.scale.set(1.6,1.6,1.6);
-  mower.position.set(-60,0,-2);
+  // Cross-bar connects the TIPS of both diagonals (the part you grip)
+  var crossBar=new THREE.Mesh(new THREE.CylinderGeometry(0.06,0.06,0.95,8),redMat);
+  crossBar.position.set(tipX,tipY,0);
+  crossBar.rotation.x=Math.PI/2;  // span along Z axis between the two bars
+  mower.add(crossBar);
+  // Optional grip nubs at each end of the cross-bar
+  var gripL=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.09,0.18,8),darkMat);
+  gripL.position.set(tipX,tipY,0.45);
+  gripL.rotation.x=Math.PI/2;
+  mower.add(gripL);
+  var gripR=gripL.clone();
+  gripR.position.z=-0.45;
+  mower.add(gripR);
+  // Start mower off-screen left. Scale 2.5x and raise z so it sits IN FRONT of the
+  // grass blade thicket (z=2 puts it closer to camera than most grass).
+  mower.scale.set(2.5,2.5,2.5);
+  mower.position.set(-60,0,2);
   mower.rotation.y=Math.PI/2; // facing right
   scene.add(mower);
 
@@ -630,11 +659,12 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
   // Total scroll = the .story section's height (600vh)
   // Each beat occupies ~1/6 of the scroll
   var tl=gsap.timeline({
+    defaults:{ease:'power3.inOut'},  // smoother default easing for ALL tweens
     scrollTrigger:{
       trigger:'.story',
       start:'top top',
       end:'bottom bottom',
-      scrub:0.6,
+      scrub:1.2,  // bumped from 0.6 for smoother camera/scene smoothing
       pin:'.story-pin',
       anticipatePin:1,
       fastScrollEnd:true,
@@ -649,28 +679,27 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
     }
   });
 
-  // Beat 1 → Beat 2: Camera pulls back, tilts up so we see sky + tree silhouettes
-  tl.to(state,{camX:-8,camY:7,camZ:28,lookX:0,lookY:4,lookZ:-15,duration:1,ease:'power1.inOut'},0)
-    // Beat 2 → Beat 3: Camera glides left to greet the incoming mower (eye-level tracking)
-    .to(state,{camX:-18,camY:3.5,camZ:14,lookX:-10,lookY:2,lookZ:-2,duration:1,ease:'power1.inOut'},1)
-    .to(state,{mowerX:-12,duration:1,ease:'power1.in'},1)
-    // Beat 3 → Beat 4: Mower cuts across; camera tracks alongside slightly elevated
-    .to(state,{mowerX:25,cutLine:25,duration:1.4,ease:'power1.inOut'},2)
-    .to(state,{camX:8,camY:6,camZ:16,lookX:15,lookY:2,lookZ:-2,duration:1.4,ease:'power1.inOut'},2)
-    // Beat 4 → Beat 5: Camera elevates AND tilts toward horizon so the sky is visible
-    // (NOT looking straight down — that hides the entire color grade)
-    .to(state,{camX:0,camY:10,camZ:32,lookX:0,lookY:6,lookZ:-15,duration:1.6,ease:'power2.inOut'},3.4)
-    .to(state,{mowerX:55,duration:1,ease:'power1.in'},3.4)
-    // Brighter daylight sky for this elevated wide-shot — 0x6BA0C8 / 0xD8E8F0
-    .to(state,{skyTopR:0.420,skyTopG:0.627,skyTopB:0.784,skyBotR:0.847,skyBotG:0.910,skyBotB:0.941,duration:1.6,ease:'none'},3.4)
-    // Beat 5: Camera back down to ground level looking at horizon, golden hour
-    .to(state,{camX:6,camY:5,camZ:18,lookX:-2,lookY:5,lookZ:-25,duration:1.5,ease:'power2.inOut'},5.0)
-    // Golden hour: 0xE89855 sky top / 0xF5D5B0 horizon
-    .to(state,{skyTopR:0.910,skyTopG:0.596,skyTopB:0.333,skyBotR:0.961,skyBotG:0.835,skyBotB:0.690,sunY:7,sunX:25,duration:1.5,ease:'none'},5.0)
-    // Beat 6: Camera tilts up to sunset sky
-    .to(state,{camY:5,lookY:8,lookZ:-20,duration:1.2,ease:'power2.inOut'},6.5)
-    // Sunset: 0x2A3F60 deep blue overhead / 0xE89855 burning horizon
-    .to(state,{skyTopR:0.165,skyTopG:0.247,skyTopB:0.376,skyBotR:0.910,skyBotG:0.596,skyBotB:0.333,duration:1.2,ease:'none'},6.5);
+  // Camera moves now use OVERLAPPING tweens so transitions blend rather than snap.
+  // All easings default to power3.inOut (set above) for gentle accel/decel.
+
+  // Beat 1 → Beat 2: Camera pulls back, tilts up (longer duration for smoother feel)
+  tl.to(state,{camX:-8,camY:7,camZ:28,lookX:0,lookY:4,lookZ:-15,duration:1.3},0)
+    // Beat 2 → Beat 3: Camera glides left to greet incoming mower (overlap by 0.2)
+    .to(state,{camX:-18,camY:3.5,camZ:14,lookX:-10,lookY:2,lookZ:-2,duration:1.3},'>-0.2')
+    .to(state,{mowerX:-12,duration:1.2,ease:'sine.inOut'},'<')
+    // Beat 3 → Beat 4: Mower cuts across; camera tracks alongside (overlap by 0.3)
+    .to(state,{mowerX:25,cutLine:25,duration:1.6,ease:'sine.inOut'},'>-0.3')
+    .to(state,{camX:8,camY:6,camZ:16,lookX:15,lookY:2,lookZ:-2,duration:1.6},'<')
+    // Beat 4 → Beat 5: Camera elevates to wide horizon shot (smoother sky transition)
+    .to(state,{camX:0,camY:10,camZ:32,lookX:0,lookY:6,lookZ:-15,duration:1.8},'>-0.2')
+    .to(state,{mowerX:55,duration:1.4,ease:'sine.in'},'<')
+    .to(state,{skyTopR:0.420,skyTopG:0.627,skyTopB:0.784,skyBotR:0.847,skyBotG:0.910,skyBotB:0.941,duration:1.8,ease:'sine.inOut'},'<')
+    // Beat 5: Ground level golden hour
+    .to(state,{camX:6,camY:5,camZ:18,lookX:-2,lookY:5,lookZ:-25,duration:1.7},'>-0.3')
+    .to(state,{skyTopR:0.910,skyTopG:0.596,skyTopB:0.333,skyBotR:0.961,skyBotG:0.835,skyBotB:0.690,sunY:7,sunX:25,duration:1.7,ease:'sine.inOut'},'<')
+    // Beat 6: Tilt up to sunset
+    .to(state,{camY:5,lookY:8,lookZ:-20,duration:1.4},'>-0.3')
+    .to(state,{skyTopR:0.165,skyTopG:0.247,skyTopB:0.376,skyBotR:0.910,skyBotG:0.596,skyBotB:0.333,duration:1.4,ease:'sine.inOut'},'<');
 
   // --- RENDER LOOP ---
   var clock=new THREE.Clock();
