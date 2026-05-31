@@ -4,6 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RJR Lawn & Landscaping | Father-Son Lawn Care · St. Charles, MO</title>
+<!-- SEO -->
+<meta name="description" content="RJR Lawn &amp; Landscaping is a father-son lawn care team in St. Charles, MO. Mowing, cleanups, mulch, and seasonal care. Call (314) 809-2756.">
+<meta name="keywords" content="lawn care St. Charles MO, lawn mowing, landscaping, mulch, yard cleanup, father son lawn care">
+<meta name="author" content="RJR Lawn &amp; Landscaping">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="geo.region" content="US-MO">
+<meta name="geo.placename" content="St. Charles, Missouri">
+<meta name="geo.position" content="38.77;-90.52">
+<meta name="ICBM" content="38.77, -90.52">
+<link rel="canonical" href="https://rjrlawn-stl.netlify.app/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="business.business">
+<meta property="og:site_name" content="RJR Lawn &amp; Landscaping">
+<meta property="og:title" content="RJR Lawn &amp; Landscaping | St. Charles, MO">
+<meta property="og:description" content="RJR Lawn &amp; Landscaping is a father-son lawn care team in St. Charles, MO. Mowing, cleanups, mulch, and seasonal care. Call (314) 809-2756.">
+<meta property="og:url" content="https://rjrlawn-stl.netlify.app/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1558904541-efa843a96f01?w=1200&h=630&q=80&auto=format&fit=crop">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RJR Lawn &amp; Landscaping | St. Charles, MO">
+<meta name="twitter:description" content="RJR Lawn &amp; Landscaping is a father-son lawn care team in St. Charles, MO. Mowing, cleanups, mulch, and seasonal care. Call (314) 809-2756.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1558904541-efa843a96f01?w=1200&h=630&q=80&auto=format&fit=crop">
+
+<!-- LocalBusiness structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://rjrlawn-stl.netlify.app/#business",
+  "name": "RJR Lawn & Landscaping",
+  "description": "RJR Lawn & Landscaping is a father-son lawn care team in St. Charles, MO. Mowing, cleanups, mulch, and seasonal care. Call (314) 809-2756.",
+  "url": "https://rjrlawn-stl.netlify.app/",
+  "telephone": "+1-314-809-2756",
+  "image": "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=1200&h=630&q=80&auto=format&fit=crop",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "St. Charles",
+    "addressRegion": "MO",
+    "postalCode": "63301",
+    "addressCountry": "US",
+    "streetAddress": "212 Shelburne Dr"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 38.77,
+    "longitude": -90.52
+  },
+  "areaServed": "St. Charles County, MO"
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -160,8 +218,29 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
 .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#999;line-height:1}
 @keyframes popIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 
+/* ============ GALLERY: BEFORE/AFTER SLIDER ============ */
+.gallery-section{background:#EEF4EA;padding:7rem 3rem;border-top:1px solid var(--border)}
+.gallery-inner{max-width:1300px;margin:0 auto}
+.gallery-inner p{font-size:.95rem;color:var(--gray);line-height:1.85;max-width:560px;margin-top:1rem}
+.ba-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:4rem}
+.ba-card{position:relative;height:400px;background:#000;overflow:hidden;border-radius:12px;cursor:ew-resize;user-select:none;box-shadow:0 20px 50px rgba(45,90,27,.15)}
+.ba-after,.ba-before{position:absolute;inset:0;background-size:cover;background-position:center;transition:none}
+.ba-before{z-index:2;clip-path:inset(0 50% 0 0)}
+.ba-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a2810,#2d5a1b);color:var(--yellow);font-weight:900;font-size:1.2rem;letter-spacing:3px;text-transform:uppercase}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;z-index:3;transform:translateX(-1.5px);pointer-events:none;box-shadow:0 0 12px rgba(0,0,0,.5)}
+.ba-handle::after{content:'⇄';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#fff;color:var(--green);font-size:1.2rem;font-weight:900;display:flex;align-items:center;justify-content:center;border:3px solid var(--yellow);box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.ba-label{position:absolute;top:1rem;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:#fff;padding:6px 14px;border-radius:100px;backdrop-filter:blur(4px);z-index:4;font-weight:800}
+.ba-label.before{left:1rem;background:rgba(0,0,0,.55)}
+.ba-label.after{right:1rem;background:rgba(45,90,27,.75)}
+.ba-info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem 1.8rem;background:linear-gradient(transparent,rgba(0,0,0,.85));z-index:4}
+.ba-cat{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);font-weight:800;margin-bottom:.3rem}
+.ba-name{font-weight:900;font-size:1.3rem;color:#fff;line-height:1.2;letter-spacing:-.3px}
+
 /* RESPONSIVE */
 @media(max-width:900px){
+  .gallery-section{padding:5rem 1.5rem}
+  .ba-grid{grid-template-columns:1fr;gap:1.2rem}
+  .ba-card{height:300px}
   nav{padding:0 1.5rem;height:60px}
   .nav-links{display:none}
   .story{height:auto}
@@ -296,6 +375,53 @@ footer{background:var(--dark);padding:2.2rem 3rem;display:flex;justify-content:s
     <div class="svc"><div class="svc-num">06</div><div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="svc-name">Yard Cleanup</div><div class="svc-desc">One-time or seasonal cleanups. Great for getting your yard ready to sell or just looking its best.</div></div>
   </div>
 </div>
+
+<!-- GALLERY: Before/After Slider -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-inner">
+    <div class="eyebrow">Recent Transformations</div>
+    <h2 class="title" data-split>Before. <span>After.</span></h2>
+    <p>Drag the slider on each tile to see the change. Every project starts with a free walk-through in your yard.</p>
+    <div class="ba-grid">
+      <div class="ba-card" data-pos="0.5">
+        <div class="ba-fallback">RJR · 01</div>
+        <div class="ba-after" style="background-image:url('https://images.unsplash.com/photo-1558904541-efa843a96f01?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="ba-before" style="background-image:url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="ba-label before">Before</div>
+        <div class="ba-label after">After</div>
+        <div class="ba-handle"></div>
+        <div class="ba-info"><div class="ba-cat">Full Yard · 2 Days</div><div class="ba-name">Mowing + Mulch Reset</div></div>
+      </div>
+      <div class="ba-card" data-pos="0.5">
+        <div class="ba-fallback">RJR · 02</div>
+        <div class="ba-after" style="background-image:url('https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="ba-before" style="background-image:url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="ba-label before">Before</div>
+        <div class="ba-label after">After</div>
+        <div class="ba-handle"></div>
+        <div class="ba-info"><div class="ba-cat">Stone &amp; Plant · 5 Days</div><div class="ba-name">Stone Border + Plant Wall</div></div>
+      </div>
+      <div class="ba-card" data-pos="0.5">
+        <div class="ba-fallback">RJR · 03</div>
+        <div class="ba-after" style="background-image:url('https://images.unsplash.com/photo-1605276373954-0c4a0dac5b12?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="ba-before" style="background-image:url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="ba-label before">Before</div>
+        <div class="ba-label after">After</div>
+        <div class="ba-handle"></div>
+        <div class="ba-info"><div class="ba-cat">Curb Appeal · 1 Day</div><div class="ba-name">Spring Cleanup</div></div>
+      </div>
+      <div class="ba-card" data-pos="0.5">
+        <div class="ba-fallback">RJR · 04</div>
+        <div class="ba-after" style="background-image:url('https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="ba-before" style="background-image:url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80&auto=format&fit=crop')"></div>
+        <div class="ba-label before">Before</div>
+        <div class="ba-label after">After</div>
+        <div class="ba-handle"></div>
+        <div class="ba-info"><div class="ba-cat">Backyard · 3 Days</div><div class="ba-name">Full Lawn Restoration</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- VALUES -->
 <div class="value-section" id="values">
@@ -433,9 +559,35 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));
   renderer.setSize(W,H);
   renderer.setClearColor(0x88B2D4,1);
+  // Soft shadows for the mower casting onto grass
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.outputEncoding=THREE.sRGBEncoding;
   var scene=new THREE.Scene();
   // Fog: pale horizon haze (gets animated independently of sky)
   scene.fog=new THREE.Fog(0xC8DFEF,40,150);
+
+  // LIGHTING — 3-point setup: warm sun + cool sky bounce + subtle rim
+  // Without proper lights, MeshStandardMaterial renders black. With them, geometry gets real shading.
+  var sunLight=new THREE.DirectionalLight(0xFFE8B5,1.2);
+  sunLight.position.set(40,40,-30);
+  sunLight.castShadow=true;
+  sunLight.shadow.mapSize.width=1024;
+  sunLight.shadow.mapSize.height=1024;
+  sunLight.shadow.camera.left=-30;
+  sunLight.shadow.camera.right=30;
+  sunLight.shadow.camera.top=30;
+  sunLight.shadow.camera.bottom=-30;
+  sunLight.shadow.camera.near=10;
+  sunLight.shadow.camera.far=120;
+  sunLight.shadow.bias=-0.0008;
+  scene.add(sunLight);
+  // Cool ambient = sky bounce. Tints shadowed areas blue, not black.
+  scene.add(new THREE.AmbientLight(0x9ABED8,0.6));
+  // Rim light from behind = separates objects from background
+  var rimLight=new THREE.DirectionalLight(0xC5DAFF,0.4);
+  rimLight.position.set(-20,15,30);
+  scene.add(rimLight);
 
   var camera=new THREE.PerspectiveCamera(48,W/H,0.1,500);
   // Beat 1 starting position: low, looking across grass
@@ -464,13 +616,14 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
   sunGlow.position.z-=.1;
   scene.add(sunGlow);
 
-  // --- GROUND (dark soil base under the grass) ---
+  // --- GROUND (dark soil base, RECEIVES shadows from mower) ---
   var ground=new THREE.Mesh(
     new THREE.PlaneGeometry(300,300,1,1),
-    new THREE.MeshBasicMaterial({color:0x1F3A12})
+    new THREE.MeshStandardMaterial({color:0x2A4E1A,roughness:0.95,metalness:0})
   );
   ground.rotation.x=-Math.PI/2;
   ground.position.y=0;
+  ground.receiveShadow=true;
   scene.add(ground);
 
   // --- GRASS FIELD (instanced mesh of curved blades with wind shader) ---
@@ -558,26 +711,35 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
   var grass=new THREE.Mesh(instGeo,grassMat);
   scene.add(grass);
 
-  // --- MOWER (procedural — geometry only, no model file needed) ---
-  // Body: red rectangular box
-  // Wheels: 4 cylinders
-  // Handle: tilted bar with rubber grips
-  // Engine box on top
+  // --- MOWER (procedural — but with proper PBR materials so it doesn't look like cardboard) ---
+  // Materials: MeshStandardMaterial reacts to lighting → real shading, highlights, shadowed sides.
   var mower=new THREE.Group();
-  // Body (RJR yellow + green for brand alignment)
-  var body=new THREE.Mesh(new THREE.BoxGeometry(1.8,0.5,1.3),new THREE.MeshBasicMaterial({color:0xF5C518}));
+  // Yellow body — high-segment box with painted-metal roughness
+  var bodyMat=new THREE.MeshStandardMaterial({color:0xF5C518,roughness:0.35,metalness:0.45});
+  var body=new THREE.Mesh(new THREE.BoxGeometry(1.8,0.5,1.3,2,2,2),bodyMat);
   body.position.y=0.45;
+  body.castShadow=true;
   mower.add(body);
-  // Top engine block
-  var engine=new THREE.Mesh(new THREE.BoxGeometry(1,0.45,0.85),new THREE.MeshBasicMaterial({color:0x1A2810}));
+  // Top engine block — matte dark
+  var engineMat=new THREE.MeshStandardMaterial({color:0x1A2810,roughness:0.7,metalness:0.5});
+  var engine=new THREE.Mesh(new THREE.BoxGeometry(1,0.45,0.85,2,2,2),engineMat);
   engine.position.set(-.15,0.85,0);
+  engine.castShadow=true;
   mower.add(engine);
-  // Engine cap
-  var cap=new THREE.Mesh(new THREE.CylinderGeometry(0.18,0.18,0.18,12),new THREE.MeshBasicMaterial({color:0x2D5A1B}));
+  // Engine cap (filler) — slightly metallic green
+  var capMat=new THREE.MeshStandardMaterial({color:0x2D5A1B,roughness:0.4,metalness:0.55});
+  var cap=new THREE.Mesh(new THREE.CylinderGeometry(0.18,0.18,0.18,32),capMat);
   cap.position.set(-.15,1.16,0);
+  cap.castShadow=true;
   mower.add(cap);
-  // Wheels
-  function wheel(x,z){var w=new THREE.Mesh(new THREE.CylinderGeometry(0.32,0.32,0.18,16),new THREE.MeshBasicMaterial({color:0x111}));w.rotation.x=Math.PI/2;w.position.set(x,0.32,z);return w}
+  // Wheels — rubber-tire matte black, 32 segments for round look at distance
+  var wheelMat=new THREE.MeshStandardMaterial({color:0x111111,roughness:0.85,metalness:0.1});
+  function wheel(x,z){
+    var w=new THREE.Mesh(new THREE.CylinderGeometry(0.32,0.32,0.18,32),wheelMat);
+    w.rotation.x=Math.PI/2;w.position.set(x,0.32,z);
+    w.castShadow=true;
+    return w;
+  }
   mower.add(wheel(0.7,0.55));mower.add(wheel(0.7,-0.55));
   mower.add(wheel(-0.7,0.55));mower.add(wheel(-0.7,-0.55));
   // Handle bar — diagonal bars + connecting T-bar (math-aligned so they actually connect)
@@ -588,27 +750,32 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
   var tipX=baseX - Math.sin(hAngle)*hLen;   // -0.6 - 1.72 = -2.32
   var tipY=baseY + Math.cos(hAngle)*hLen;   //  0.5 + 1.37 =  1.87
   var midX=(baseX+tipX)/2, midY=(baseY+tipY)/2;
-  var darkMat=new THREE.MeshBasicMaterial({color:0x1A2810});
-  var redMat=new THREE.MeshBasicMaterial({color:0xC0392B});
-  // Left bar (z=+0.4) — three.js cylinder defaults to Y-axis; rotateZ tilts it
-  var handleL=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,hLen,8),darkMat);
+  // Handle bars + cross-bar — PBR materials so they shade properly with the rest of the mower
+  var darkMat=new THREE.MeshStandardMaterial({color:0x1A2810,roughness:0.6,metalness:0.55});
+  var redMat=new THREE.MeshStandardMaterial({color:0xC0392B,roughness:0.5,metalness:0.3});
+  // Left bar (z=+0.4) — 32 segments so cylinders read as round at distance
+  var handleL=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,hLen,32),darkMat);
   handleL.position.set(midX,midY,0.42);
   handleL.rotation.z=hAngle;
+  handleL.castShadow=true;
   mower.add(handleL);
   // Right bar (z=-0.4)
-  var handleR=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,hLen,8),darkMat);
+  var handleR=new THREE.Mesh(new THREE.CylinderGeometry(0.05,0.05,hLen,32),darkMat);
   handleR.position.set(midX,midY,-0.42);
   handleR.rotation.z=hAngle;
+  handleR.castShadow=true;
   mower.add(handleR);
-  // Cross-bar connects the TIPS of both diagonals (the part you grip)
-  var crossBar=new THREE.Mesh(new THREE.CylinderGeometry(0.06,0.06,0.95,8),redMat);
+  // Cross-bar connects the TIPS of both diagonals (the part you grip) — RED rubber grip
+  var crossBar=new THREE.Mesh(new THREE.CylinderGeometry(0.06,0.06,0.95,32),redMat);
   crossBar.position.set(tipX,tipY,0);
-  crossBar.rotation.x=Math.PI/2;  // span along Z axis between the two bars
+  crossBar.rotation.x=Math.PI/2;
+  crossBar.castShadow=true;
   mower.add(crossBar);
-  // Optional grip nubs at each end of the cross-bar
-  var gripL=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.09,0.18,8),darkMat);
+  // Grip nubs at each end of the cross-bar
+  var gripL=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.09,0.18,32),darkMat);
   gripL.position.set(tipX,tipY,0.45);
   gripL.rotation.x=Math.PI/2;
+  gripL.castShadow=true;
   mower.add(gripL);
   var gripR=gripL.clone();
   gripR.position.z=-0.45;
@@ -621,13 +788,18 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
   scene.add(mower);
 
   // --- TREE in distance (procedural — simple cone+cylinder, easter egg) ---
+  // Trees — PBR materials, more cone segments so silhouette reads as a tree, not a polygon
+  var trunkMat=new THREE.MeshStandardMaterial({color:0x4A3018,roughness:0.9,metalness:0});
+  var leafMat=new THREE.MeshStandardMaterial({color:0x2D5A1B,roughness:0.85,metalness:0});
   function makeTree(x,z,scale){
     var t=new THREE.Group();
-    var trunk=new THREE.Mesh(new THREE.CylinderGeometry(0.3,0.4,1.8,8),new THREE.MeshBasicMaterial({color:0x4A3018}));
+    var trunk=new THREE.Mesh(new THREE.CylinderGeometry(0.3,0.4,1.8,16),trunkMat);
     trunk.position.y=0.9;
+    trunk.castShadow=true;
     t.add(trunk);
-    var top=new THREE.Mesh(new THREE.ConeGeometry(1.6,3.5,10),new THREE.MeshBasicMaterial({color:0x2D5A1B}));
+    var top=new THREE.Mesh(new THREE.ConeGeometry(1.6,3.5,24),leafMat);
     top.position.y=3.2;
+    top.castShadow=true;
     t.add(top);
     t.position.set(x,0,z);
     t.scale.set(scale,scale,scale);
@@ -809,6 +981,40 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener
     el.addEventListener('mouseleave',function(){if(raf){cancelAnimationFrame(raf);raf=0}el.style.transform='';inner.style.transform=''});
   }
   document.querySelectorAll('.magnetic').forEach(bind);
+})();
+</script>
+
+<!-- Before/After slider interaction -->
+<script>
+(function(){
+  document.querySelectorAll('.ba-card').forEach(function(card){
+    var before=card.querySelector('.ba-before');
+    var handle=card.querySelector('.ba-handle');
+    var dragging=false;
+    function setPos(pct){
+      pct=Math.max(0,Math.min(1,pct));
+      before.style.clipPath='inset(0 '+((1-pct)*100)+'% 0 0)';
+      handle.style.left=(pct*100)+'%';
+    }
+    setPos(0.5);
+    function eventPos(e){var r=card.getBoundingClientRect();var x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;return x/r.width}
+    card.addEventListener('mousedown',function(e){dragging=true;setPos(eventPos(e))});
+    card.addEventListener('touchstart',function(e){dragging=true;setPos(eventPos(e))},{passive:true});
+    window.addEventListener('mousemove',function(e){if(dragging)setPos(eventPos(e))});
+    window.addEventListener('touchmove',function(e){if(dragging)setPos(eventPos(e))},{passive:true});
+    window.addEventListener('mouseup',function(){dragging=false});
+    window.addEventListener('touchend',function(){dragging=false});
+    // Hover-track on desktop (no click needed)
+    card.addEventListener('mousemove',function(e){if(!dragging)setPos(eventPos(e))});
+    // Fallback if images fail
+    [before,card.querySelector('.ba-after')].forEach(function(bg){
+      var url=(bg.style.backgroundImage||'').replace(/^url\(["']?/,'').replace(/["']?\)$/,'');
+      if(!url)return;
+      var img=new Image();
+      img.onerror=function(){bg.style.display='none';var fb=card.querySelector('.ba-fallback');if(fb)fb.style.display='flex'};
+      img.src=url;
+    });
+  });
 })();
 </script>
 
